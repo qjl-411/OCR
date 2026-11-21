@@ -1,0 +1,161 @@
+name: Release candidate cross-platform acceptance
+on:
+  push:
+    paths: ['.github/workflows/remote-acceptance.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+defaults:
+  run:
+    working-directory: invoice-studio
+env:
+  PYTHONUTF8: '1'
+jobs:
+  native:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch exact reviewed public source and bundled weights
+        shell: python
+        working-directory: .
+        run: |
+          import hashlib, pathlib, urllib.request, zipfile
+          url = "https://github.com/qjl-411/OCR/releases/download/v2.1.0-candidate.1/piao-v2.1-public-source.zip"
+          archive = pathlib.Path("public-source.zip")
+          urllib.request.urlretrieve(url, archive)
+          actual = hashlib.sha256(archive.read_bytes()).hexdigest()
+          assert actual == "35c6bcb1df39504d2ace6f0376fe4278eeb2a1d6bb6d082d9e8b85905abd6e62", actual
+          with zipfile.ZipFile(archive) as bundle:
+              assert all(not pathlib.PurePosixPath(n).is_absolute() and ".." not in pathlib.PurePosixPath(n).parts for n in bundle.namelist())
+              bundle.extractall()
+          pathlib.Path("invoice-studio/test-results").mkdir(parents=True, exist_ok=True)
+          print("Verified public source ee51e83758576a97516d6beed1a44eb2ce1771b2", actual)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python scripts/restore_models.py
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m pip check
+      - run: npm --prefix frontend ci
+      - run: npm --prefix frontend test -- --reporter=json --outputFile=../test-results/frontend.json
+      - run: npm run build
+      - run: python -m pytest -q --junitxml=test-results/backend.xml
+      - run: python scripts/verify_delivery.py --output test-results/native-smoke.json
+      - run: python scripts/verify_portable_launcher.py --output test-results/launcher-smoke.json
+      - if: runner.os == 'Windows'
+        run: python scripts/fetch_portable_inputs.py --inputs "${{ runner.temp }}/piao-portable-inputs"
+      - if: runner.os == 'Windows'
+        run: python scripts/package_portable_windows.py --inputs "${{ runner.temp }}/piao-portable-inputs" --staging "${{ runner.temp }}/PiaoStudio-windows-x64" --output "${{ runner.temp }}/piao-windows-portable.zip"
+      - if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          & "${{ runner.temp }}/PiaoStudio-windows-x64/python/python.exe" -X utf8 -I -B "${{ runner.temp }}/PiaoStudio-windows-x64/invoice-studio/scripts/portable_start.py" --diagnose --json-output "${{ github.workspace }}/invoice-studio/test-results/windows-portable-doctor.json"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & "${{ runner.temp }}/PiaoStudio-windows-x64/python/python.exe" -X utf8 -I -B "${{ runner.temp }}/PiaoStudio-windows-x64/invoice-studio/scripts/verify_delivery.py" --output "${{ github.workspace }}/invoice-studio/test-results/windows-portable-smoke.json"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@v4
+        if: runner.os == 'Windows' && always()
+        with:
+          name: windows-portable-package
+          path: ${{ runner.temp }}/piao-windows-portable.zip
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-${{ matrix.os }}
+          path: invoice-studio/test-results/
+          retention-days: 14
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch exact reviewed public source and bundled weights
+        shell: python
+        working-directory: .
+        run: |
+          import hashlib, pathlib, urllib.request, zipfile
+          url = "https://github.com/qjl-411/OCR/releases/download/v2.1.0-candidate.1/piao-v2.1-public-source.zip"
+          archive = pathlib.Path("public-source.zip")
+          urllib.request.urlretrieve(url, archive)
+          actual = hashlib.sha256(archive.read_bytes()).hexdigest()
+          assert actual == "35c6bcb1df39504d2ace6f0376fe4278eeb2a1d6bb6d082d9e8b85905abd6e62", actual
+          with zipfile.ZipFile(archive) as bundle:
+              assert all(not pathlib.PurePosixPath(n).is_absolute() and ".." not in pathlib.PurePosixPath(n).parts for n in bundle.namelist())
+              bundle.extractall()
+          pathlib.Path("invoice-studio/test-results").mkdir(parents=True, exist_ok=True)
+          print("Verified public source ee51e83758576a97516d6beed1a44eb2ce1771b2", actual)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python scripts/restore_models.py
+      - run: python -m pip install -r requirements-dev.txt
+      - run: npm --prefix frontend ci
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+        working-directory: invoice-studio/frontend
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+      - run: npm --prefix frontend run test:e2e
+        env:
+          INVOICE_DATA_DIR: ${{ runner.temp }}/piao-browser
+          INVOICE_SEED_DEMO: '1'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: real-browser-evidence
+          path: |
+            invoice-studio/frontend/playwright-report/
+            invoice-studio/frontend/test-results/
+          retention-days: 14
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch exact reviewed public source and bundled weights
+        shell: python
+        working-directory: .
+        run: |
+          import hashlib, pathlib, urllib.request, zipfile
+          url = "https://github.com/qjl-411/OCR/releases/download/v2.1.0-candidate.1/piao-v2.1-public-source.zip"
+          archive = pathlib.Path("public-source.zip")
+          urllib.request.urlretrieve(url, archive)
+          actual = hashlib.sha256(archive.read_bytes()).hexdigest()
+          assert actual == "35c6bcb1df39504d2ace6f0376fe4278eeb2a1d6bb6d082d9e8b85905abd6e62", actual
+          with zipfile.ZipFile(archive) as bundle:
+              assert all(not pathlib.PurePosixPath(n).is_absolute() and ".." not in pathlib.PurePosixPath(n).parts for n in bundle.namelist())
+              bundle.extractall()
+          pathlib.Path("invoice-studio/test-results").mkdir(parents=True, exist_ok=True)
+          print("Verified public source ee51e83758576a97516d6beed1a44eb2ce1771b2", actual)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python -m pip install httpx==0.28.1
+      - run: npm --prefix frontend ci
+      - run: npm run build
+      - run: docker build -t piao-acceptance .
+      - run: docker run -d --name piao-acceptance -p 127.0.0.1:18000:8000 piao-acceptance
+      - run: python scripts/verify_delivery.py --base-url http://127.0.0.1:18000 --output test-results/docker-smoke.json
+      - if: always()
+        run: docker logs piao-acceptance
+      - if: always()
+        run: docker rm -f piao-acceptance
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: docker-evidence
+          path: invoice-studio/test-results/
+          retention-days: 14
