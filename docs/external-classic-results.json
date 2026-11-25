@@ -1,0 +1,176 @@
+{
+  "created_at": "2026-11-21T03:16:34.931808+00:00",
+  "engine": "ctpn_crnn_ctc",
+  "models": [
+    {
+      "file": "ctpn.onnx",
+      "bytes": 71589188,
+      "sha256": "88009f4b8e263ebfa03b7d108da340685836dc20a72b02b67cd434fb7bd1d64f"
+    },
+    {
+      "file": "crnn_cn.onnx",
+      "bytes": 47069411,
+      "sha256": "bcc6115d420cbb08ba5783794239be6ee91bef40068267307aa26fe89508fb1c"
+    },
+    {
+      "file": "charset_cn.txt",
+      "bytes": 19996,
+      "sha256": "0ab32c4bcaf8429550c5706a51174c6ca805ac0bccd4ace1aeab09d6946a89ae"
+    }
+  ],
+  "protocol_sha256": "e775fdfb0a794aa856b7030a0738640ff768c4d2c3652f6ae308379acc31562b",
+  "protocol": {
+    "selection_rule": "Both exact VAT invoice example URLs provided by the two primary API documentation pages, chosen before any model inference. No output-based filtering.",
+    "samples": [
+      {
+        "id": "aliyun-ocr-example",
+        "url": "https://img.alicdn.com/tfs/TB1qIIfXAPoK1RjSZKbXXX1IXXa-808-523.jpg",
+        "source_page": "https://help.aliyun.com/zh/ocr/developer-reference/api-ocr-api-2021-07-07-recognizeinvoice",
+        "expected": {
+          "invoice_code": "031001600211",
+          "invoice_number": "67516978",
+          "invoice_date": "2017-02-12",
+          "subtotal": "75.21",
+          "tax_amount": "12.79",
+          "total": "88.00"
+        },
+        "image_sha256": "cb297eb62346b2af74fd9085524fd0fb6325d7429aeb4baef56d54d060f40f65",
+        "ground_truth_method": "Manual visual transcription of the six visible printed fields before first inference; cloud API outputs not used."
+      },
+      {
+        "id": "aliyun-viapi-example",
+        "url": "https://viapi-test.oss-cn-shanghai.aliyuncs.com/viapi-3.0domepic/ocr/RecognizeVATInvoice/RecognizeVATInvoice3.jpg",
+        "source_page": "https://help.aliyun.com/en/viapi/developer-reference/api-k4uq3o",
+        "expected": {
+          "invoice_code": "033002000411",
+          "invoice_number": "03753869",
+          "invoice_date": "2020-12-15",
+          "subtotal": "82.08",
+          "tax_amount": "4.92",
+          "total": "87.00"
+        },
+        "image_sha256": "918aea5d42435c2c762e56fcdb6ea1bc8287d4c1be00a05f3efe33ea1f3841d7",
+        "ground_truth_method": "Manual visual transcription of the six visible printed fields before first inference; cloud API outputs not used."
+      }
+    ],
+    "fixed_before_inference_at": "2026-11-21T03:15:39.264490+00:00",
+    "physical_invoice_groups": 2,
+    "project_training_or_tuning_use": false,
+    "cloud_ocr_called": false,
+    "pdf_text_used": false,
+    "limitations": [
+      "Two public documentation examples, a convenience sample, not representative production accuracy.",
+      "No inference that the two companies completed the depicted transactions.",
+      "Unknown original pretraining corpus; upstream overlap cannot be ruled out."
+    ]
+  },
+  "implementation_sha256": {
+    "backend/app/classic_ocr/pipeline.py": "a621328a092b88dad262998314ce26df96e361a9fb1c1ad4bda5ebe1cfb5df9e",
+    "backend/app/classic_ocr/ctc.py": "6404c7394d49f185543c0487ba2c4b796c2ffd8cf77749560d236920ebb7cc35",
+    "backend/app/classic_ocr/ctpn_postprocess.py": "9b78249b21db925759e40cdfe8359b31fe9bc16cb9f5b18eea1c6b5c7832d8e8",
+    "backend/app/reader.py": "fcd2f7ff3483629fabf2173b4b1d3a70943f7a8cac303a068aa91e65811356b0",
+    "backend/app/parser.py": "73f86d6e3b92189ced24656c092b6d5812b34a2584d05b6a967c8550a27f9e0e",
+    "scripts/evaluate_external.py": "606cb513d825d657b9f98ada5e0c3a9ff5e7dd36ad581a5985fadeb2ad3b4f49"
+  },
+  "images_count": 2,
+  "physical_invoice_groups": 2,
+  "matched_fields": 5,
+  "total_fields": 12,
+  "field_exact_accuracy": 0.4166666666666667,
+  "per_field": {
+    "invoice_code": {
+      "matched": 0,
+      "total": 2
+    },
+    "invoice_number": {
+      "matched": 0,
+      "total": 2
+    },
+    "invoice_date": {
+      "matched": 1,
+      "total": 2
+    },
+    "subtotal": {
+      "matched": 1,
+      "total": 2
+    },
+    "tax_amount": {
+      "matched": 1,
+      "total": 2
+    },
+    "total": {
+      "matched": 2,
+      "total": 2
+    }
+  },
+  "image_results": [
+    {
+      "id": "aliyun-ocr-example",
+      "engine": "ctpn_crnn_ctc",
+      "image_sha256": "cb297eb62346b2af74fd9085524fd0fb6325d7429aeb4baef56d54d060f40f65",
+      "expected": {
+        "invoice_code": "031001600211",
+        "invoice_number": "67516978",
+        "invoice_date": "2017-02-12",
+        "subtotal": "75.21",
+        "tax_amount": "12.79",
+        "total": "88.00"
+      },
+      "observed": {
+        "invoice_code": "",
+        "invoice_number": "",
+        "invoice_date": "",
+        "subtotal": "75.21",
+        "tax_amount": "12.79",
+        "total": "88.00"
+      },
+      "matches": {
+        "invoice_code": false,
+        "invoice_number": false,
+        "invoice_date": false,
+        "subtotal": true,
+        "tax_amount": true,
+        "total": true
+      },
+      "raw_text": "发票代码:031016M01\n上海增售帆配*普通发票3*\n开票日熟2017年02日12日\n机器编号661619906 投验码:602850389773140912868\n称:贯宏伤 (87*>>53>5023-446>/4+83/5\n的收人级% *>5/81(75/1931Y4>>730+2/0/\n%电% 4378-2*7*-91-0>27>167/9831\n开户及账9 图 3*588/+/81(75/1931>4>>7571(\n省物发成税劳务服务名你规格1单位 税\nI瑞81信脚称动潮300 752 7521 I279\nM1安究电案平机通用大容快充\n¥75.21 ¥12.79\n价税会*(大写 8额拾额圆鹏 小写*88.00\n称:上海电子商务有限公司 下(下)\n纳税人识别991310106552993944D\n地龄电识湖**A*1%*A00*Q)0 )41111A521%A0图M\n5;仪照):中慎行限价限公司上%市山断1行4525\n发票专用看\n收款人 复格: 开票人:天猎超市 销售方(",
+      "seconds": 7.68
+    },
+    {
+      "id": "aliyun-viapi-example",
+      "engine": "ctpn_crnn_ctc",
+      "image_sha256": "918aea5d42435c2c762e56fcdb6ea1bc8287d4c1be00a05f3efe33ea1f3841d7",
+      "expected": {
+        "invoice_code": "033002000411",
+        "invoice_number": "03753869",
+        "invoice_date": "2020-12-15",
+        "subtotal": "82.08",
+        "tax_amount": "4.92",
+        "total": "87.00"
+      },
+      "observed": {
+        "invoice_code": "",
+        "invoice_number": "60966753003521159330",
+        "invoice_date": "2020-12-15",
+        "subtotal": null,
+        "tax_amount": null,
+        "total": "87.00"
+      },
+      "matches": {
+        "invoice_code": false,
+        "invoice_number": false,
+        "invoice_date": true,
+        "subtotal": false,
+        "tax_amount": false,
+        "total": true
+      },
+      "raw_text": "国战就目 发票代码:03300200U11\n浙江增售貌雨秀普通发票WW3eM\n4 -”且暂服4总目 开票日期:2020年12月15日\n机器编号:661565715765 肿00 校验码:60966753003521159330\n称:三号技术有限责任公司 到05Y4/*(6330A2530(98\"33\n纳税人识别号:91420200000123403 3((+6-9-6969>/8/8564-+6+*/0\n地站甩沿 093971>52+49016x30×4*>0+/->\n开户行及账号: 4+/392**+6-(249+9/-9*0/>2271\n货物或应税劳务服务名称 规格w号单位 数量 单价 金额 税率 税额\n伙服务饮服务 8Z.08 82.M86% 49\n票\n金 计 Y82.08 Y4.92\n价税合计(大写) 8额拾荣圆整 (小写Y87.00\n称:三号拔术有限责任公司\n纳额人识别号9142020000123403 %基有W\n地址电话:渐江省忧州市西湖区税大脚0聚龙大股西区15M8%0578PM0180\n开户行及账号:中国银行洲江省分行3585832A18 注 【493MM5NP-\n收款人: 开票人:HL1177 销方(N寝票南用",
+      "seconds": 6.612
+    }
+  ],
+  "seconds": 14.294,
+  "python": "3.12.14",
+  "scope": "Six predeclared printed fields per independent public documentation example; tiny convenience sample; no manual corrections or parameter changes after inference.",
+  "ppocr_used": false,
+  "cloud_ocr_used": false,
+  "pdf_text_used": false
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "file": "demo-01.pdf",
+    "source": "synthetic",
+    "invoice_number": "99000000000000000001",
+    "total": "8480.00",
+    "invoice_date": "2026-11-19",
+    "category": "synthetic",
+    "expected_status": "approved",
+    "purpose": "正常演示"
+  },
+  {
+    "file": "demo-02.pdf",
+    "source": "synthetic",
+    "invoice_number": "99000000000000000002",
+    "total": "1286.00",
+    "invoice_date": "2026-11-17",
+    "category": "synthetic",
+    "expected_status": "approved",
+    "purpose": "正常演示"
+  },
+  {
+    "file": "demo-03.pdf",
+    "source": "synthetic",
+    "invoice_number": "99000000000000000003",
+    "total": "642.00",
+    "invoice_date": "2026-11-16",
+    "category": "synthetic",
+    "expected_status": "approved",
+    "purpose": "正常演示"
+  },
+  {
+    "file": "demo-04.pdf",
+    "source": "synthetic",
+    "invoice_number": "99000000000000000004",
+    "total": "356.00",
+    "invoice_date": "2026-11-12",
+    "category": "synthetic",
+    "expected_status": "approved",
+    "purpose": "正常演示"
+  },
+  {
+    "file": "demo-05.pdf",
+    "source": "synthetic",
+    "invoice_number": "99000000000000000005",
+    "total": "2100.00",
+    "invoice_date": "2026-10-15",
+    "category": "synthetic",
+    "expected_status": "approved",
+    "purpose": "正常演示"
+  },
+  {
+    "file": "demo-06.pdf",
+    "source": "synthetic",
+    "invoice_number": "99000000000000000006",
+    "total": "85.70",
+    "invoice_date": "2026-10-22",
+    "category": "synthetic",
+    "expected_status": "approved",
+    "purpose": "正常演示"
+  },
+  {
+    "file": "demo-07.pdf",
+    "source": "synthetic",
+    "invoice_number": "99000000000000000007",
+    "total": "726.00",
+    "invoice_date": "2026-09-18",
+    "category": "synthetic",
+    "expected_status": "approved",
+    "purpose": "正常演示"
+  },
+  {
+    "file": "demo-08.pdf",
+    "source": "synthetic",
+    "invoice_number": "99000000000000000008",
+    "total": "1360.00",
+    "invoice_date": "2026-11-18",
+    "category": "synthetic",
+    "expected_status": "needs_review",
+    "purpose": "正常演示"
+  },
+  {
+    "file": "demo-09.pdf",
+    "source": "synthetic",
+    "invoice_number": "99000000000000000009",
+    "total": "128.50",
+    "invoice_date": "2026-11-15",
+    "category": "synthetic",
+    "expected_status": "needs_review",
+    "purpose": "重复票"
+  },
+  {
+    "file": "demo-10.pdf",
+    "source": "synthetic",
+    "invoice_number": "99000000000000000009",
+    "total": "128.50",
+    "invoice_date": "2026-11-15",
+    "category": "synthetic",
+    "expected_status": "needs_review",
+    "purpose": "重复票"
+  },
+  {
+    "file": "demo-11.pdf",
+    "source": "synthetic",
+    "invoice_number": "99000000000000000011",
+    "total": "268.00",
+    "invoice_date": "2026-11-14",
+    "category": "synthetic",
+    "expected_status": "needs_review",
+    "purpose": "金额异常"
+  },
+  {
+    "file": "demo-12.png",
+    "source": "synthetic",
+    "invoice_number": "99000000000000000012",
+    "total": "186.00",
+    "invoice_date": "2026-11-13",
+    "category": "synthetic",
+    "expected_status": "needs_review",
+    "purpose": "图片 OCR"
+  }
+]

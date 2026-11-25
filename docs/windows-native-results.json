@@ -1,0 +1,23 @@
+{
+  "service_startup": "passed",
+  "static_assets": 3,
+  "offline_docs": "passed",
+  "actual_image_ocr": "passed",
+  "engine": "ctpn_crnn_ctc",
+  "model_version": "ctpn-crnn-ctc-camera1200-r1",
+  "observed": {
+    "invoice_number": "99000000000000000012",
+    "invoice_date": "2026-11-13",
+    "subtotal": "175.47",
+    "tax_amount": "10.53",
+    "total": "186.00"
+  },
+  "queue_and_preview": "passed",
+  "xlsx_download": "passed",
+  "unreviewed_amount_excluded": "passed",
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "machine": "AMD64",
+  "model_hashes": "passed",
+  "browser_visual_qa": "separate real-browser evidence required"
+}

@@ -1,0 +1,71 @@
+import { test, expect } from '@playwright/test'
+import path from 'node:path'
+import fs from 'node:fs/promises'
+
+test('desktop: sign in, six pages, real designated OCR, review, download and persistence',async({page},info)=>{
+  await page.setViewportSize({width:1440,height:1000})
+  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message))
+  await page.goto('/')
+  // Authentication gate: the workspace must not be visible before signing in.
+  await expect(page.getByRole('heading',{name:'登录工作区'})).toBeVisible()
+  await page.getByLabel('邮箱',{exact:true}).fill(process.env.E2E_EMAIL||'finance@company.com')
+  await page.getByLabel('密码',{exact:true}).fill(process.env.E2E_PASSWORD||'invoice-2026')
+  await page.getByRole('button',{name:/^登录$/}).click()
+  await expect(page.getByRole('heading',{name:'工作台',exact:true})).toBeVisible()
+  await page.screenshot({path:info.outputPath('desktop-dashboard.png'),fullPage:true})
+  for(const name of ['工作台','识别中心','发票台账','分析报告','操作记录','系统设置']){
+    await page.locator('.sidebar').getByRole('button',{name:new RegExp('^'+name+' *[0-9]*$')}).click()
+    await expect(page.getByRole('heading',{name:new RegExp('^'+name)}).first()).toBeVisible()
+    await page.screenshot({path:info.outputPath(`desktop-${name}.png`),fullPage:true})
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy()
+  }
+  await page.locator('.sidebar').getByRole('button',{name:/^识别中心/}).click()
+  // 界面不提供引擎选择入口：指定的 CTPN/CRNN/CTC 由服务端默认使用。
+  await expect(page.getByLabel('图像识别流水线')).toHaveCount(0)
+  await expect(page.getByText('扫描件 PDF 按图片识别')).toBeVisible()
+  await page.getByLabel('选择发票文件').setInputFiles(path.resolve('../data/demo/demo-12.png'))
+  await page.getByRole('button',{name:'开始识别 1 个文件',exact:true}).click()
+  await expect(page.getByText('成功 1 · 跳过 0 · 失败 0',{exact:true})).toBeVisible({timeout:90000})
+  await page.locator('.sidebar').getByRole('button',{name:/^发票台账/}).click()
+  await page.getByLabel('搜索发票',{exact:true}).fill('demo-12.png')
+  await page.getByRole('button',{name:'复核',exact:true}).click()
+  const dialog=page.getByRole('dialog')
+  await expect(dialog.getByText(/CTPN → CRNN → CTC/)).toBeVisible()
+  await expect(dialog.getByLabel('发票号码')).toHaveValue('99000000000000000012')
+  await expect(dialog.getByLabel('价税合计')).toHaveValue('186.00')
+  await dialog.getByRole('button',{name:'切换识别框'}).click()
+  await expect(dialog.locator('.ocr-box').first()).toBeVisible()
+  // Explicit manual correction is not counted as OCR accuracy.
+  await dialog.getByLabel('购买方名称').fill('青禾创新(教学示例)有限公司')
+  await dialog.getByPlaceholder('记录费用用途或人工核对说明').fill('浏览器验收人工复核记录')
+  await dialog.getByRole('button',{name:'保存修改',exact:true}).click()
+  await expect(page.getByText('修改已保存，等待人工确认')).toBeVisible()
+  await page.screenshot({path:info.outputPath('desktop-review.png'),fullPage:true})
+  await dialog.getByRole('button',{name:'关闭弹窗'}).click()
+  await page.reload()
+  await page.getByLabel('搜索发票',{exact:true}).fill('demo-12.png')
+  await page.getByRole('button',{name:'复核',exact:true}).click()
+  await expect(page.getByPlaceholder('记录费用用途或人工核对说明')).toHaveValue('浏览器验收人工复核记录')
+  await page.getByRole('button',{name:'关闭弹窗'}).click()
+  await page.getByRole('button',{name:'导出数据',exact:true}).click()
+  const pending=page.waitForEvent('download')
+  await page.getByRole('button',{name:'生成并下载',exact:true}).click()
+  const download=await pending;expect(download.suggestedFilename()).toMatch(/\.xlsx$/)
+  const bytes=await fs.readFile((await download.path())!);expect(bytes.subarray(0,2).toString()).toBe('PK')
+  expect(errors).toEqual([])
+})
+test('mobile: navigation, controls and document overflow',async({page},info)=>{
+  await page.setViewportSize({width:390,height:844});await page.goto('/')
+  await expect(page.getByRole('heading',{name:'登录工作区'})).toBeVisible()
+  await page.getByLabel('邮箱',{exact:true}).fill(process.env.E2E_EMAIL||'finance@company.com')
+  await page.getByLabel('密码',{exact:true}).fill(process.env.E2E_PASSWORD||'invoice-2026')
+  await page.getByRole('button',{name:/^登录$/}).click()
+  await expect(page.getByRole('heading',{name:'工作台',exact:true})).toBeVisible()
+  for(const name of ['工作台','识别中心','发票台账','分析报告','系统设置']){
+    await page.getByRole('button',{name:'打开导航菜单'}).click()
+    await page.locator('.sidebar').getByRole('button',{name:new RegExp('^'+name+' *[0-9]*$')}).click()
+    await expect(page.getByRole('heading',{name:new RegExp('^'+name)}).first()).toBeVisible()
+    await page.screenshot({path:info.outputPath(`mobile-${name}.png`),fullPage:true})
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy()
+  }
+})

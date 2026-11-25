@@ -1,0 +1,14 @@
+.venv
+frontend/node_modules
+runtime
+__pycache__
+.pytest_cache
+tests
+.git
+
+.qa
+pytest-of-agent
+training
+evaluation
+models/classic/ctpn.xml
+models/classic/ctpn.bin

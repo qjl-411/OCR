@@ -1,0 +1,9 @@
+[2m[WebServer] [22mINFO:     Started server process [10176]
+[2m[WebServer] [22mINFO:     Waiting for application startup.
+[2m[WebServer] [22mINFO:     Application startup complete.
+[2m[WebServer] [22mINFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+
+Running 2 tests using 1 worker
+
+  ok 1 e2e\acceptance.spec.ts:5:1 › desktop: sign in, six pages, real designated OCR, review, download and persistence (18.0s)
+  ok 2 e2e\acceptance.spec.ts:57:1 › mobile: navigation, controls and document overflow (3.5s)

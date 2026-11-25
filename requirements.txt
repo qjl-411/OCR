@@ -1,0 +1,13 @@
+# Python 3.11 or 3.12 recommended. Exact versions used for acceptance tests.
+fastapi==0.141.1
+uvicorn==0.52.1
+pydantic==2.13.4
+PyMuPDF==1.26.6
+Pillow==13.0.0
+numpy==2.3.5
+python-multipart==0.0.32
+openpyxl==3.1.5
+reportlab==4.4.9
+rapidocr-onnxruntime==1.4.4
+onnxruntime==1.23.2
+opencv-python==4.11.0.86

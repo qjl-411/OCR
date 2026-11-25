@@ -1,0 +1,31 @@
+{
+  "checkpoint_sha256": "df07e732ba04f1690e87fa1312d3cdec7ada9bc10a4384e32d0641d60df5fb5d",
+  "onnx_sha256": "bcc6115d420cbb08ba5783794239be6ee91bef40068267307aa26fe89508fb1c",
+  "trained_steps_current_stage": 800,
+  "vocabulary_characters": 6735,
+  "classes_including_blank": 6736,
+  "architecture": "7 Conv + 2 bidirectional LSTM + explicit CTC",
+  "onnx_operators": {
+    "Conv": 7,
+    "LSTM": 2,
+    "LogSoftmax": 1
+  },
+  "parity": [
+    {
+      "width": 100,
+      "max_log_probability_error": 9.1552734375e-05
+    },
+    {
+      "width": 160,
+      "max_log_probability_error": 0.000102996826171875
+    },
+    {
+      "width": 320,
+      "max_log_probability_error": 0.0001068115234375
+    },
+    {
+      "width": 640,
+      "max_log_probability_error": 0.0001220703125
+    }
+  ]
+}

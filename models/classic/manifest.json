@@ -1,0 +1,85 @@
+{
+  "version": "ctpn-crnn-ctc-camera1200-r1",
+  "pipeline": [
+    "CTPN",
+    "CRNN",
+    "CTC"
+  ],
+  "runtime": "ONNX Runtime 1.23.2 CPU; telemetry disabled; no PP-OCR fallback",
+  "files": [
+    {
+      "file": "ctpn.onnx",
+      "bytes": 71589188,
+      "sha256": "88009f4b8e263ebfa03b7d108da340685836dc20a72b02b67cd434fb7bd1d64f"
+    },
+    {
+      "file": "crnn_cn.onnx",
+      "bytes": 47069411,
+      "sha256": "bcc6115d420cbb08ba5783794239be6ee91bef40068267307aa26fe89508fb1c"
+    },
+    {
+      "file": "charset_cn.txt",
+      "bytes": 19996,
+      "sha256": "0ab32c4bcaf8429550c5706a51174c6ca805ac0bccd4ace1aeab09d6946a89ae"
+    }
+  ],
+  "training_runs": [
+    {
+      "name": "required-crnn",
+      "record": "training/runs/required-crnn/run.json",
+      "record_sha256": "5ff45c040f4267b47a8bd3dd7b41ea019bea2d9f8e70d126e12b1a7490c63b02",
+      "completed_steps": 400,
+      "checkpoint_sha256": "f893e2b3f68179a4cce50946b8e554597dc1a1a6a33bb486b41f12adb2ac87d4",
+      "seconds": 80.15465632799999,
+      "device": "cpu"
+    },
+    {
+      "name": "camera-adaptation",
+      "record": "training/runs/camera-adaptation/run.json",
+      "record_sha256": "a0d3156a34b428d9dd2e6290d33451188b655a91a7c7091988be3a2329f7b770",
+      "completed_steps": 800,
+      "checkpoint_sha256": "df07e732ba04f1690e87fa1312d3cdec7ada9bc10a4384e32d0641d60df5fb5d",
+      "seconds": 154.58670537599994,
+      "device": "cpu"
+    }
+  ],
+  "total_project_finetuning_steps": 1200,
+  "sources": {
+    "ctpn": {
+      "url": "https://storage.openvinotoolkit.org/repositories/open_model_zoo/public/2022.1/ctpn/ctpn.pb",
+      "upstream": "https://github.com/eragonruan/text-detection-ctpn",
+      "source_sha256": "09b3a0cc57eb826dd6b6fa95a03e078ad435b7b5fb0186dad2abdb98a4fdf64a",
+      "trained_here": false,
+      "conversion_report": "docs/ctpn-conversion-results.json"
+    },
+    "crnn": {
+      "url": "https://github.com/Sierkinhane/CRNN_Chinese_Characters_Rec/blob/a565687c4076b729d4059593b7570dd388055af4/output/checkpoints/mixed_second_finetune_acc_97P7.pth",
+      "source_sha256": "7836afdb7f56cae4d5ef28532c33c1642f7f9a5e65cef5bd6fa9da00595a8691",
+      "fine_tuned_here": true,
+      "license": "No explicit weight license found upstream; application license does not grant third-party model rights."
+    }
+  },
+  "preprocessing": {
+    "detector_short_side": 1000,
+    "detector_max_side": 2000,
+    "gray_height": 32,
+    "width_factor": 0.5714285714285714,
+    "mean": 0.588,
+    "std": 0.193,
+    "exposure_percentiles": [
+      2,
+      96
+    ],
+    "invoice_number_reread_factors": [
+      0.65,
+      0.7,
+      0.85
+    ],
+    "amount_reread_factors": [
+      0.7,
+      0.85
+    ],
+    "reread_policy": "select only actual same-CRNN/CTC predictions; never add decimal points or digits"
+  },
+  "evaluation_policy": "Invoice-identity-disjoint VATID protocol: data/evaluation-split.json. Original 0081-0100 is only image-level holdout with invoice identity overlap. External examples are fixed before inference. No PP-OCR or PDF text counts toward network metrics."
+}

@@ -1,0 +1,20 @@
+{
+  "repo": "FuxiJia/InvoiceDatasets",
+  "commit": "e0c2ab03a253552133f1a771b9a77eb20db20865",
+  "source_partition": "train",
+  "samples": [
+    "vat_0030",
+    "vat_0035"
+  ],
+  "selection_rule": "Select ALL previously unused images 0026-0050 whose manually assigned invoice group is absent from 0001-0025 AND 0051-0100; exclude even historical evaluations conservatively. No metric-based choice.",
+  "use": "FINAL PHYSICAL-INVOICE-DISJOINT EVALUATION ONLY; frozen model; never training or tuning",
+  "identity_audit": "data/vatid-identity-audit.json",
+  "identity_audit_sha256": "e5a1377f291624b7c49e373c4622cb42aa3b90a422100156132746be0d26931c",
+  "physical_invoice_groups": 1,
+  "selected_groups": {
+    "vat_0030": "invoice-group-19",
+    "vat_0035": "invoice-group-19"
+  },
+  "exclusions": "All physical invoice identities appearing in project training/development/history IDs 0001-0025 and 0051-0100.",
+  "fixed_before_inference_at": "2026-11-21T03:14:31.689625+00:00"
+}

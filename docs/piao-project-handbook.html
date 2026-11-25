@@ -1,0 +1,657 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>票序 项目开发与验收手册</title><style>
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f4f7f5;color:#27372e;font:16px/1.9 system-ui,"PingFang SC","Microsoft YaHei",sans-serif}a{color:#347554;text-decoration:none}a:hover{text-decoration:underline}header{background:#164c3d;color:white;padding:60px max(28px,calc((100vw - 1160px)/2)) 50px}header .label{color:#b6d3bf;letter-spacing:3px;font-size:12px}header h1{font-size:36px;line-height:1.4;letter-spacing:1px;margin:15px 0 18px}header p{color:#c4d8ca;max-width:700px;font-size:15px;line-height:1.9}header .badges{display:flex;gap:12px;margin-top:25px;flex-wrap:wrap}header .badges span{font-size:12px;color:#cbe3ce;padding:5px 12px;background:#ffffff0a;border:1px solid #ffffff24;border-radius:5px}.layout{max-width:1200px;margin:35px auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:32px;padding:0 25px}nav{position:sticky;top:25px;align-self:start;padding:18px 14px;border:1px solid #e1e9e0;border-radius:10px;background:white}nav strong{display:block;font-size:12px;color:#80927b;letter-spacing:1px;margin:3px 12px 10px}nav a{display:block;font-size:13px;line-height:1.65;color:#63775a;padding:9px 12px;border-radius:6px}nav a:hover{background:#f0f6ea;text-decoration:none}article{min-width:0}section{background:white;border:1px solid #e1e8dc;border-radius:12px;padding:34px 38px;margin-bottom:25px;scroll-margin-top:25px}section>h1{font-size:25px;color:#253b29;line-height:1.5;margin:0 0 25px}h2{font-size:20px;color:#385232;margin:32px 0 16px}h3{font-size:17px;color:#56744b;margin:26px 0 13px}h4{font-size:16px}p{margin:15px 0;font-size:15px}ul,ol{padding-left:25px;font-size:15px}li{padding-left:4px;margin:9px 0}table{width:100%;border-collapse:collapse;font-size:13px;line-height:1.8;margin:23px 0;overflow-wrap:anywhere}th{background:#eaf2e4;color:#426039;font-weight:600;text-align:left}th,td{border:1px solid #dce6d4;padding:11px 13px;vertical-align:top}tr:nth-child(even)td{background:#fafcf8}code{background:#eef4e9;border-radius:4px;padding:2px 5px;color:#5e7a4f;font-family:Consolas,monospace;font-size:.88em}pre{border:1px solid #e0e9d8;background:#f4f8ef;padding:17px 19px;border-radius:8px;overflow:auto;font-size:13px;line-height:1.85}pre code{background:none;padding:0;font-size:13px;color:#5b754b}blockquote{border-left:3px solid #b6cda2;padding:2px 20px;margin:20px 0;background:#f5f9f0;color:#7c956d}.foot{font-size:12px;color:#90a080;padding:0 10px 35px}.top-link{display:inline-block;margin-top:20px;font-size:12px}strong{font-weight:650}@media(max-width:900px){.layout{grid-template-columns:1fr;padding:0 17px;gap:20px}nav{position:static;display:flex;flex-wrap:wrap;gap:0;padding:14px}nav strong{width:100%}nav a{font-size:12px;padding:8px 10px}section{padding:27px}header{padding:38px 25px}header h1{font-size:28px}table{font-size:12px}th,td{padding:9px}}@media print{body{background:white;color:#222;font-size:11pt}.layout{display:block;max-width:none;margin:0;padding:0}nav,header .badges,.top-link{display:none}header{background:none;color:black;padding:0 0 20px}header h1{font-size:25pt;color:black}header p,header .label{color:#555}section{border:0;padding:0;margin:0;break-before:page}section h1{color:black;font-size:19pt}h2,h3{color:black;break-after:avoid}table,pre{break-inside:avoid}th{background:#eee;color:black}p,ul,ol{font-size:10pt;line-height:1.8}table{font-size:8.5pt}a{color:inherit}pre{white-space:pre-wrap;word-break:break-word}@page{size:A4;margin:20mm}}
+    </style></head><body id="top"><header><span class="label">PIAO STUDIO / PROJECT HANDBOOK</span><h1>票序 智能财务发票系统<br>开发与交付手册</h1><p>从需求梳理、界面设计到识别、人工复核、归档和统计，说明项目如何运行、如何验证，以及如何演示与继续开发。</p><div class="badges"><span>React + FastAPI</span><span>本地 OCR</span><span>完整源码与模型</span><span>v2.0.0</span></div></header><div class="layout"><nav><strong>手册目录</strong><a href="#section-0">票序 智能财务发票系统 v2.0</a><a href="#section-1">项目脉络与交付范围</a><a href="#section-2">票序界面设计规范</a><a href="#section-3">架构与开发说明</a><a href="#section-4">数据 模型与真实训练</a><a href="#section-5">接口说明</a><a href="#section-6">测试与验收报告</a><a href="#section-7">演示与答辩</a><a href="#section-8">训练与复现操作</a><a href="#section-9">跨平台与浏览器验收操作</a></nav><article><section id="section-0"><h1>票序 智能财务发票系统 v2.0</h1>
+<p>指定算法验收候选版：React + TypeScript 前端、FastAPI 后端、本地 SQLite。图片和扫描 PDF 实际使用 <strong>CTPN → CRNN → CTC</strong>，有文字层的电子 PDF 可直接解析。保留上传、批处理、复核、重复校验、费用分类、统计、审计和 Excel / CSV / JSON 导出。</p>
+<p><strong>本地算法与业务验证已经执行；Windows、macOS、Docker 和真实浏览器的最终验证尚待运行，当前不称为全部验收完成。</strong> 具体数据见 <a href="#section-6">验收报告</a>。PP-OCR 仅保留为需要明确选择的旧版对比通道，指定网络失败时直接报错，不回退。</p>
+<h2>运行</h2>
+<p>安装 64 位 Python 3.12，进入解压后的项目目录：</p>
+<pre><code class="language-bash">python start.py
+</code></pre>
+<p>Windows 可双击 <code>start.bat</code>，macOS / Linux 可运行 <code>sh start.sh</code>。首次安装依赖需联网；模型和依赖齐全后在本机处理发票，不调用云端 OCR。运行预构建界面不需要 Node.js。默认打开 <code>http://127.0.0.1:8000</code>，按 Ctrl+C 停止。</p>
+<pre><code class="language-bash">python start.py --port 8010 --no-browser
+python start.py --no-demo
+python start.py --install-only
+</code></pre>
+<p>建议 4 核 CPU、8 GB 内存、2 GB 可用磁盘；GPU 不是运行和本次微调的必要条件。macOS 运行库要求 13 或以上。数据保存在 <code>runtime</code>，也可用 <code>INVOICE_DATA_DIR</code> 指定位置。Git 源码中的模型分卷由启动器自动校验并重组；离线交付包直接附完整 ONNX 文件。</p>
+<h2>使用闭环</h2>
+<ol>
+<li>在识别中心上传 PDF / PNG / JPG / ZIP，保持指定算法选择。</li>
+<li>算法验收时勾选“PDF 也强制走图像识别”，确保没有使用 PDF 文字层。</li>
+<li>在待复核对照原图、识别框和提取字段，修订错误，确认或填写原因驳回。</li>
+<li>必填字段、金额关系和重复检查通过后才能确认；统计仅计入已确认的非重复票据。</li>
+<li>在台账筛选日期、分类、状态和来源，导出 Excel、CSV 或 JSON；操作记录保存变更历史。</li>
+</ol>
+<p>票号和税号保留为字符串，金额使用 Decimal，未知税额保持 null。规则检查不提供税务真伪查验。模型分数不是准确率，所有新上传记录都进入人工复核。</p>
+<h2>数据与模型</h2>
+<p>私人交付包包含原始 23 张 PDF；公开 Git 源码排除原始发票、私人参考值、裁剪图和本地数据库。11 张初始 PDF 与额外 1 张 PNG 都明确标注为虚构教学示例。</p>
+<p>CTPN 使用原始 VGG16 / 双向 LSTM 预训练网络并进行数值校验；CRNN 使用 7 个卷积层和两层双向 LSTM，实际微调两阶段共 1200 步；训练为 CTCLoss，推理显式 CTC 解码。权重、来源、SHA-256 和逐步 loss 均随包提供，详见 <a href="#section-4">数据与模型</a> 和 <a href="#section-8">训练复现</a>。</p>
+<p>独立评估严格按票据身份排除训练和历史开发数据：VATID 0030、0035 是同一张未见发票的两张照片；另有两份此前未用的官方文档发票示例。样本非常小。0081–0100 存在票据身份重合，只保留为图片留出成绩。水平关键词端到端召回为 29/50；外部示例的六项字段合计命中 5/12，不能称为高精度整票识别。竖排标签未有效支持，所有新发票需要人工复核。</p>
+<h2>开发与验证</h2>
+<pre><code class="language-bash">python start.py --install-only
+.venv/bin/python -m pip install -r requirements-dev.txt
+.venv/bin/python -m pytest -q
+npm --prefix frontend ci
+npm --prefix frontend test
+npm run build
+.venv/bin/python scripts/verify_delivery.py
+</code></pre>
+<p>Windows 将 <code>.venv/bin/python</code> 替换为 <code>.venv\Scripts\python.exe</code>。独立评估命令：</p>
+<pre><code class="language-bash">.venv/bin/python scripts/fetch_evaluation_data.py
+.venv/bin/python scripts/evaluate_classic.py --dataset evaluation/vatid-final
+.venv/bin/python scripts/evaluate_external.py --download-only
+.venv/bin/python scripts/evaluate_external.py
+</code></pre>
+<p>脚本只下载已固定来源的原图和人工标注，不调用云 OCR、PP-OCR 或 PDF 文字层。票据分组审查在 <code>data/vatid-identity-audit.json</code>；两个独立协议均在首次识别前写定。结果分别在 <code>docs/independent-classic-results.json</code> 和 <code>docs/external-classic-results.json</code>。</p>
+<h2>Docker 与跨平台</h2>
+<pre><code class="language-bash">docker compose up --build -d
+docker compose logs -f
+</code></pre>
+<p>数据保存在命名卷；停止服务使用 <code>docker compose down</code>，需要保留数据时不要删除卷。提供配置不代表已执行容器验收。Windows/macOS/Linux、Docker 与真实 Chromium 的工作流见 <code>.github/workflows/acceptance.yml</code>，实际执行与授权说明见 <a href="#section-9">跨平台验收</a>。</p>
+<p><a href="#section-1">项目脉络</a> · <a href="#section-2">前端设计</a> · <a href="#section-3">架构</a> · <a href="#section-5">接口</a> · <a href="#section-7">演示答辩</a></p>
+</section><section id="section-1"><h1>项目脉络与交付范围</h1>
+<p>原题要求电子发票读取、CTPN 检测、CRNN 识别、CTC 解码、信息提取和 Excel 保存。Qt 界面经用户授权改为前后端；指定算法仍须实际执行，不能只保持抽象职责相同。</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>工作与交付物</th>
+<th>验证</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>立项</td>
+<td>对照原题、盘点 23 个 PDF、区分真实和合成数据</td>
+<td>文件清单、范围说明</td>
+</tr>
+<tr>
+<td>设计</td>
+<td>七个业务页面、复核工作区、数据和 API 边界</td>
+<td>页面设计、类型检查</td>
+</tr>
+<tr>
+<td>基础实现</td>
+<td>上传、PDF 提取、队列、SQLite、预览</td>
+<td>API 与文件测试</td>
+</tr>
+<tr>
+<td>指定检测</td>
+<td>原始 CTPN 权重转换和后处理</td>
+<td>三尺寸原始输出对齐</td>
+</tr>
+<tr>
+<td>指定识别</td>
+<td>经典 CRNN 与两阶段有监督微调</td>
+<td>逐步 loss、检查点哈希</td>
+</tr>
+<tr>
+<td>解码和提取</td>
+<td>CTC、证据框、金额与格式规则</td>
+<td>标签级与字段测试</td>
+</tr>
+<tr>
+<td>业务完善</td>
+<td>人工复核、版本保护、重复限制、统计、审计、导出</td>
+<td>完整业务闭环</td>
+</tr>
+<tr>
+<td>独立评估</td>
+<td>固定未见纸票，分开组件与流水线指标</td>
+<td>输入、模型和代码哈希</td>
+</tr>
+<tr>
+<td>环境验收</td>
+<td>Linux、Windows、macOS、容器、真实浏览器</td>
+<td>实际记录，不以配置代替结果</td>
+</tr>
+</tbody>
+</table>
+<p>保留旧版 PP-OCR 对比通道，但默认图像引擎为 CTPN / CRNN / CTC。补充功能包括批量 ZIP、重复票阻止确认、金额一致性、来源筛选、人工修改退回复核、统计和审计。项目面向个人单机与课程演示，不将其描述为税务查验服务或多人生产平台。</p>
+</section><section id="section-2"><h1>票序界面设计规范</h1>
+<h2>视觉方向</h2>
+<p>采用克制的财务工作台风格：浅灰画布、白色卡片、深松绿导航和主操作，辅以薄荷绿、琥珀色与蓝色区分状态。中文使用系统无衬线字体；金额使用等宽数字。图标采用统一线条图标，避免大量装饰性图片影响票据可读性。</p>
+<p>桌面左侧 224px 常驻导航，顶部为位置、搜索入口和单机工作区标识。内容区域包含页标题、操作、关键数据卡与主要工作区。窄屏导航收起到抽屉，表格保持横向滚动；复核页面改为上下布局。</p>
+<h2>页面规划</h2>
+<table>
+<thead>
+<tr>
+<th>页面</th>
+<th>主要内容</th>
+<th>关键交互</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工作台</td>
+<td>动态金额指标、月份趋势、分类占比、最近票据、待办</td>
+<td>来源切换、打开票据、导出</td>
+</tr>
+<tr>
+<td>识别中心</td>
+<td>拖拽上传、文件队列、处理日志、演示数据入口</td>
+<td>多文件 ZIP、真实进度、错误重试</td>
+</tr>
+<tr>
+<td>发票台账</td>
+<td>搜索、状态标签、分类、日期、分页、勾选</td>
+<td>详情、批量导出、删除确认</td>
+</tr>
+<tr>
+<td>待复核</td>
+<td>异常说明、原票预览、文本框、字段表单</td>
+<td>字段聚焦、缩放、保存、批准、驳回</td>
+</tr>
+<tr>
+<td>统计分析</td>
+<td>时间范围、月度支出、类别统计、供应商排行</td>
+<td>动态筛选、导出当前范围</td>
+</tr>
+<tr>
+<td>操作记录</td>
+<td>时间、动作、票号、字段变更</td>
+<td>按动作筛选、审计追踪</td>
+</tr>
+<tr>
+<td>设置与帮助</td>
+<td>OCR 状态、必填校验、部署说明、示例说明</td>
+<td>持久保存复核阈值与工作区名称</td>
+</tr>
+</tbody>
+</table>
+<h2>设计细节</h2>
+<p>主色 <code>#164c3d</code>，画布 <code>#f4f6f8</code>，正文 <code>#182b26</code>，次级文字 <code>#6b7873</code>，边框 <code>#e4e9e6</code>。主字号 16px，常用说明 14px，辅助信息不小于 12px。圆角 12–18px，卡片阴影轻微，主区域留白 24–32px。</p>
+<p>所有操作有明确的等待、成功、失败反馈；按钮在请求中禁用；弹窗支持 Escape、焦点约束与关闭；文件状态与异常同时使用文字和颜色表达。金额、票号与状态列位置稳定，票据复核时始终保留原始识别文本与人工修改记录。</p>
+</section><section id="section-3"><h1>架构与开发说明</h1>
+<p>浏览器加载 React 预构建页面，通过同源 API 调用 FastAPI；后台单进程队列处理上传，SQLite 保存业务与审计，文件系统保存原件和预览。</p>
+<p><strong>处理流程：</strong> 批量上传 → 格式检查 → 本地队列 → PDF 直接读取或图片 OCR → 字段提取与校验 → 人工修订、确认或驳回 → 统计与导出。</p>
+<h2>指定网络</h2>
+<p>CTPN 为原始 VGG16 的 13 个卷积加 RPN 卷积，stride=16 特征图的每一行输入隐藏维 128 的双向 LSTM，再经 512 维线性投影、十组锚框分类和回归。后处理执行概率筛选、NMS、相邻锚框图连接，生成文本行。</p>
+<p>转换按原冻结图映射参数，将 TensorFlow i,j,f,o 门顺序改为 PyTorch i,f,g,o，并加入原图 forget_bias=1；线性投影之后不能擅加 ReLU。以 OpenVINO 读取并执行的原冻结图作为数值参考，不声称运行过独立 TensorFlow 环境。三尺寸实际误差保留在转换报告。</p>
+<p>CRNN 为七层卷积、两层隐藏维 256 的双向 LSTM 与字符投影，输入固定高度 32、动态宽度，输出 time × batch × 6736。字符表 6735 个字符，标签 0 为 blank。训练使用 CTCLoss；推理先合并相邻重复标签，再移除 blank，例如 A,A,blank,A 得到 AA。</p>
+<p>暗照片曝光归一化、长表格横线处理、邻行碎片清理和空列间距压缩属于输入处理。标签明确但号码格式不完整、或金额小数点缺失时，可在同一 CRNN 上以不同宽度重读，只采用实际输出候选，不补写数字或从其他字段反推税额。</p>
+<p>运行时使用 CPU ONNX Runtime 1.23.2，启动前校验模型 SHA-256；关闭遥测。模型或依赖不齐直接报错，指定网络模块不导入、不调用 PP-OCR。图像记录 engine=ctpn_crnn_ctc，PDF 直接提取为 pdf_text，旧版比较为 ppocr，分别保留。</p>
+<h2>业务一致性</h2>
+<p>上传配置和模型版本参与文件去重；同一原件可分别验证文字层与图像通道。不同文件中相同票号仍标记业务重复并阻止确认。金额使用 Decimal，未知值保存 null。修改携带 revision，旧版本冲突被拒绝；保存后退回复核，统计仅含人工确认且不重复的票据。</p>
+<p>文件级处理完成后再写入，避免后页失败留下半份记录。中断任务重启后标记失败，已成功文件可重新导入并跳过。限制大小、页数、像素与 ZIP 路径，Excel/CSV 导出处理公式风险和长数字类型。</p>
+<h2>主要代码</h2>
+<p><code>reader.py</code> 路由格式和识别模式；<code>classic_ocr</code> 是指定网络；<code>parser.py</code> 提取和验证；<code>service.py</code> 队列、去重与统计；<code>exporter.py</code> 导出；<code>main.py</code> API；<code>frontend/src</code> 为七个页面和复核交互。训练和数值转换与日常运行依赖分开。</p>
+</section><section id="section-4"><h1>数据 模型与真实训练</h1>
+<table>
+<thead>
+<tr>
+<th>数据</th>
+<th>使用范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户 23 张原始 PDF</td>
+<td>前 18 张产生监督训练裁剪，后 5 张开发验证；文字层回归另行报告</td>
+</tr>
+<tr>
+<td>11 张 PDF 与 1 张 PNG 合成示例</td>
+<td>清楚标识教学用途，验证业务、重复和金额异常</td>
+</tr>
+<tr>
+<td>700 个合成字符串裁剪</td>
+<td>训练数字、重复字符、金额和日期，不能冒充真实发票</td>
+</tr>
+<tr>
+<td>VATID 官方训练 0001–0020</td>
+<td>20 张纸票的人工标注水平关键词，用于 CRNN 适配</td>
+</tr>
+<tr>
+<td>VATID 官方训练 0021–0025</td>
+<td>5 张纸票的组件开发验证</td>
+</tr>
+<tr>
+<td>VATID 0051–0060</td>
+<td>历史错误分析与输入预处理开发，不是最终独立集</td>
+</tr>
+<tr>
+<td>VATID 0061–0080</td>
+<td>历史候选版本评估，不作为最终版本成绩</td>
+</tr>
+<tr>
+<td>VATID 官方测试 0081–0100</td>
+<td>历史图片留出评估，存在同一发票不同照片跨划分，不是票据级独立集</td>
+</tr>
+<tr>
+<td>VATID 原训练划分 0030、0035</td>
+<td>本项目从未使用的留出照片；同一张未见发票，60 个关键词</td>
+</tr>
+<tr>
+<td>阿里云两份官方文档示例</td>
+<td>两张不同发票、12 个预先人工抄录字段，外部独立小样本</td>
+</tr>
+</tbody>
+</table>
+<p>原始 PDF、私人参考值、裁剪图和运行数据库不进入公开 Git 仓库。按人工查看原图印刷票号完成 100 张图片的身份分组后，排除 0001–0025 和 0051–0100 中全部发票身份，最终仅 0030、0035 留下。它们和外部两张示例均不参与项目训练或参数选择；历史图片级结果不据此改写为独立成绩。上游预训练数据未完整公开，无法排除上游重叠。VATID 原图通过下载脚本从固定提交取得，不在公开项目中再次分发。</p>
+<h2>真实训练</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>训练与开发样本</th>
+<th>步数</th>
+<th>实测 CPU 耗时</th>
+<th>开发子集结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PDF 与合成文本</td>
+<td>1571 / 350</td>
+<td>400</td>
+<td>80.15 秒</td>
+<td>60 条完全匹配 36 → 58；CER 7.48% → 0.43%</td>
+</tr>
+<tr>
+<td>真实纸票适配与原数据混合</td>
+<td>2071 / 475</td>
+<td>800</td>
+<td>154.59 秒</td>
+<td>120 条完全匹配 94 → 116；CER 4.16% → 0.62%</td>
+</tr>
+</tbody>
+</table>
+<p>CPU、PyTorch 2.8.0+cpu、4 线程、batch=8、Adam lr=0.00015，冻结 CNN，只更新两层双向 LSTM 与投影；固定 seed=20261120。逐步 loss、输入清单哈希、起止时间和检查点哈希在 <code>training/runs/*/run.json</code> 与 <code>metrics.jsonl</code>。开发子集不是全量开发集、更不是独立整票准确率。</p>
+<h2>权重来源与可核对文件</h2>
+<p>CTPN 源图来自 eragonruan 原始网络，下载镜像：
+https://storage.openvinotoolkit.org/repositories/open_model_zoo/public/2022.1/ctpn/ctpn.pb</p>
+<p>源说明：
+https://github.com/openvinotoolkit/open_model_zoo/blob/master/models/public/ctpn/model.yml</p>
+<p>CRNN 初始化检查点固定提交：
+https://github.com/Sierkinhane/CRNN_Chinese_Characters_Rec/blob/a565687c4076b729d4059593b7570dd388055af4/output/checkpoints/mixed_second_finetune_acc_97P7.pth</p>
+<p>数据固定提交：
+https://github.com/FuxiJia/InvoiceDatasets/tree/e0c2ab03a253552133f1a771b9a77eb20db20865</p>
+<p>运行权重为 <code>models/classic/ctpn.onnx</code> 和 <code>crnn_cn.onnx</code>，字符表为 <code>charset_cn.txt</code>，精确 SHA-256、来源和训练链条见 manifest；CTPN 未在本项目训练，CRNN 真实微调 1200 步。源文件名中的 97P7 不是本项目测得的成绩。原 CRNN 仓库未明确声明权重许可证，不能将应用代码许可直接扩展到第三方权重；研究评估和商业/再次分发应分别核实授权。</p>
+<h2>数据解释</h2>
+<p>VATID 仅标注部分关键词，不能计算完整发票字段准确率、全票检测精确率或 F1。两张最终照片来自同一发票，统计单位和局限均明确保留；外部示例另报六项字段匹配，不与关键词指标混算。输入哈希、模型哈希、实现哈希、逐图结果和协议在对应报告。PDF 栅格衍生图只是同源回归，不能增加独立样本数量。附件中票面税额为星号时，仍保留未知，不擅自按金额差填写零税额。</p>
+<h2>独立数据取得与来源</h2>
+<p>新增两张外部图片分别采用官方 API 文档提供的示例链接，只下载原图，未调用这些厂商的识别服务。GT 来自首次推理前对原图人工目视抄录，字段为代码、号码、日期、不含税金额、税额和价税合计。选择依据是文档给出的固定示例，不按模型效果挑选。原图哈希和精确页面 URL 见 <code>data/external-evaluation-split.json</code>；不将文档示例假定为已核实的真实交易，原图不随公开源码再次分发。</p>
+</section><section id="section-5"><h1>接口说明</h1>
+<p>根地址为 <code>http://127.0.0.1:8000</code>。主界面和 API 使用相同域名，无需配置 API 密钥。JSON 金额字段为两位小数字符串或 <code>null</code>；票号、代码与税号都是字符串。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>路径</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>/api/health</td>
+<td>版本和 OCR 可用状态</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/meta</td>
+<td>设置、分类、数据集数量和上传限制</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/dashboard</td>
+<td>按日期与来源汇总统计</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/invoices</td>
+<td>筛选、排序、分页的票据列表</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/invoices/{id}</td>
+<td>完整字段、文字框、原文与异常</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/invoices/{id}/preview</td>
+<td>提供票据预览图</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/invoices/{id}/original</td>
+<td>提供原始上传文件</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>/api/invoices/{id}</td>
+<td>保存人工修订并退回待复核</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/api/invoices/{id}/review</td>
+<td>确认、驳回或退回复核</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/api/invoices/{id}</td>
+<td>删除记录及无引用原件，保留审计</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/api/imports</td>
+<td>multipart 多文件上传，返回后台任务</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/api/datasets/{source}/import</td>
+<td>导入 provided 或 demo 目录</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/datasets/demo/sample</td>
+<td>下载有明确演示标记的 PNG</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/jobs</td>
+<td>最近 30 个任务</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/jobs/{id}</td>
+<td>单个任务实时进度和逐文件结果</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/export</td>
+<td>导出 xlsx、csv 或 json</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/audit</td>
+<td>操作日志，支持动作筛选和分页</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>/api/settings</td>
+<td>更新工作区与复核规则</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/openapi.json</td>
+<td>机器可读 OpenAPI</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/docs</td>
+<td>本地接口文档，无外部脚本依赖</td>
+</tr>
+</tbody>
+</table>
+<h2>查询参数</h2>
+<p><code>/api/invoices</code> 支持 <code>q</code>、<code>status</code>、<code>category</code>、<code>source</code>、<code>start</code>、<code>end</code>、<code>sort</code>、<code>page</code> 和 <code>page_size</code>。日期为 <code>YYYY-MM-DD</code>；每页默认 10 条，最大 100 条。排序包括 <code>newest</code>、<code>date_desc</code>、<code>amount_desc</code>。状态可用 <code>needs_review</code>、<code>approved</code>、<code>rejected</code>，以及异常集合 <code>anomaly</code> 和重复集合 <code>duplicate</code>。来源为 <code>provided</code>、<code>upload</code>、<code>demo</code>；空值表示不限。</p>
+<p><code>/api/dashboard</code> 支持 <code>start</code>、<code>end</code>、<code>source</code>。金额统计只包含已确认且非重复的票据。</p>
+<p><code>/api/export</code> 支持相同的查询条件、<code>ids</code>（逗号分隔）和 <code>format</code>（xlsx / csv / json）。<code>ids</code> 与筛选条件取交集，空结果返回 422。</p>
+<h2>上传与轮询</h2>
+<pre><code class="language-bash">curl -F &quot;pipeline=classic&quot; -F &quot;force_ocr=true&quot; -F &quot;files=@example.pdf&quot; http://127.0.0.1:8000/api/imports
+curl http://127.0.0.1:8000/api/jobs/返回的任务id
+</code></pre>
+<p>上传接口接受 multipart 表单，字段名重复使用 <code>files</code>，返回 HTTP 202 和任务对象。接受上传不代表识别完成；应轮询任务的 <code>status</code>。文件级识别错误保存在 <code>results</code>，导入前的格式或 ZIP 条目问题保存在 <code>errors</code>。<code>total</code> 与 <code>processed</code> 按文件统计，PDF 的每页可能生成单独票据。</p>
+<h2>人工修改与确认</h2>
+<p>修改接口要求提交全部可编辑字段和当前 <code>revision</code>。保存成功后返回更新后的票据与新版本。确认请求示例：</p>
+<pre><code class="language-json">{&quot;revision&quot;: 2, &quot;verdict&quot;: &quot;approved&quot;, &quot;note&quot;: &quot;&quot;}
+</code></pre>
+<p><code>verdict</code> 可为 <code>approved</code>、<code>rejected</code> 或 <code>needs_review</code>。驳回需要非空原因。存在必填缺失、金额不平或重复时，确认返回 422。版本冲突返回 409，调用者应重新读取，不能静默覆盖。</p>
+<h2>常见返回状态</h2>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>查询或操作成功</td>
+</tr>
+<tr>
+<td>202</td>
+<td>上传已接受，任务进入队列</td>
+</tr>
+<tr>
+<td>403</td>
+<td>跨站写入被拒绝</td>
+</tr>
+<tr>
+<td>404</td>
+<td>记录、文件或接口不存在</td>
+</tr>
+<tr>
+<td>409</td>
+<td>数据版本过期</td>
+</tr>
+<tr>
+<td>413</td>
+<td>批次或上传数量超出限制</td>
+</tr>
+<tr>
+<td>422</td>
+<td>参数、空导出、复核条件等检查失败</td>
+</tr>
+<tr>
+<td>503</td>
+<td>缺少前端构建文件</td>
+</tr>
+</tbody>
+</table>
+<h2>指定识别模式</h2>
+<p>上传表单另接受 <code>pipeline=classic|ppocr</code> 和 <code>force_ocr=true|false</code>，默认 classic、false。数据集导入接受相同查询参数。engine 分别为 pdf_text、ctpn_crnn_ctc、ppocr。processing_profile 保留配置、模型版本、原件哈希和耗时。指定网络失败直接报错，不回退其他模型。</p>
+</section><section id="section-6"><h1>测试与验收报告</h1>
+<p>版本 2.0 指定算法验收候选版。指定网络与业务闭环已经实测；整票识别效果仍有限，跨平台和真实浏览器验收未完成。</p>
+<table>
+<thead>
+<tr>
+<th>检查</th>
+<th>实际结果</th>
+<th>证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>后端与 API</td>
+<td>37 项通过；公开源码缺私有附件时 35 通过、2 跳过</td>
+<td>backend-test-results.xml</td>
+</tr>
+<tr>
+<td>前端 DOM 交互</td>
+<td>5 项通过</td>
+<td>frontend-test-results.json</td>
+</tr>
+<tr>
+<td>TypeScript / Vite 构建</td>
+<td>通过</td>
+<td>dist</td>
+</tr>
+<tr>
+<td>隔离运行依赖 / pip check</td>
+<td>通过，日常运行不安装 torch</td>
+<td>requirements.lock.txt</td>
+</tr>
+<tr>
+<td>真实 HTTP 与指定图像 OCR</td>
+<td>通过，engine=ctpn_crnn_ctc；原图预览与 XLSX 下载成功</td>
+<td>delivery-smoke-results.json</td>
+</tr>
+<tr>
+<td>公开源码重组与真实 HTTP</td>
+<td>通过，权重从分卷恢复后启动与上传识别成功</td>
+<td>public-source-http-smoke.json</td>
+</tr>
+<tr>
+<td>CTPN 转换</td>
+<td>三尺寸数值对齐通过；原图由 OpenVINO 执行</td>
+<td>ctpn-conversion-results.json</td>
+</tr>
+<tr>
+<td>CRNN 导出</td>
+<td>四宽度数值对齐通过</td>
+<td>crnn-export-results.json</td>
+</tr>
+<tr>
+<td>Windows / macOS</td>
+<td>尚未执行，无对应本地系统或已授权远程运行器</td>
+<td>acceptance.yml</td>
+</tr>
+<tr>
+<td>Docker</td>
+<td>尚未执行，当前无可用容器运行环境</td>
+<td>acceptance.yml</td>
+</tr>
+<tr>
+<td>真实浏览器视觉与下载</td>
+<td>尚未执行，预览中继不可用；只有待执行用例</td>
+<td>frontend/e2e</td>
+</tr>
+</tbody>
+</table>
+<h2>独立测试与去重协议</h2>
+<p>原 0081–0100 与训练或开发集包含相同发票的不同照片，因此只能保留为图片留出结果。根据原图印刷票号人工审查全部 100 张照片，使用相同票号保守分组；排除训练、开发及全部历史评估 0001–0025、0051–0100 的所有票据身份。剩余 0030、0035 在模型首次处理前被固定，两张照片同属一张新发票。分组、完整排除和模型/输入/实现哈希均留档。不得将两张相关照片当作两张独立发票。</p>
+<p>另在官方文档中选择两份固定示例，首次推理前人工抄录六项字段 GT。两份原图均未参与本项目训练或调参，不调用厂商 OCR；不推定其为经核验的真实交易。其票号与附件和 VATID 的所有分组不同。全部独立集合计四张图、三张不同发票，规模不足以说明普遍效果。</p>
+<h2>指定网络关键词结果</h2>
+<p>模型版本 <code>ctpn-crnn-ctc-camera1200-r1</code>。VATID 两张图，60 个关键词，水平 50、竖排 10。只执行 CTPN / CRNN / CTC，无 PDF 文字层、PP-OCR 或人工输出修订。</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>计数</th>
+<th>实测结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>水平关键词检测覆盖召回</td>
+<td>42 / 50</td>
+<td>84.00%</td>
+</tr>
+<tr>
+<td>水平 GT 裁剪整词匹配</td>
+<td>50 / 50</td>
+<td>100.00%</td>
+</tr>
+<tr>
+<td>水平 GT 裁剪 CER</td>
+<td>0 / 176</td>
+<td>0.00%</td>
+</tr>
+<tr>
+<td>水平端到端关键词召回</td>
+<td>29 / 50</td>
+<td>58.00%</td>
+</tr>
+<tr>
+<td>全部关键词端到端召回</td>
+<td>29 / 60</td>
+<td>48.33%</td>
+</tr>
+<tr>
+<td>竖排端到端关键词召回</td>
+<td>0 / 10</td>
+<td>0.00%</td>
+</tr>
+</tbody>
+</table>
+<p>GT 裁剪识别使用人工真值框，只是 CRNN+CTC 组件指标，不能称为整票准确率。检测覆盖指预测行框覆盖至少 80% 的关键词真值框面积；端到端还要求预测文本包含该关键词。双方 NFKC 后去除标注未包含的标点和空格。没有完整票面标注，不能计算全票精确率或 F1。原始详情：independent-classic-results.json。</p>
+<h2>外部示例的端到端字段结果</h2>
+<table>
+<thead>
+<tr>
+<th>样本</th>
+<th>六项字段命中</th>
+<th>失败字段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aliyun-ocr-example</td>
+<td>3 / 6</td>
+<td>代码、号码、日期</td>
+</tr>
+<tr>
+<td>aliyun-viapi-example</td>
+<td>2 / 6</td>
+<td>代码、号码、不含税金额、税额</td>
+</tr>
+</tbody>
+</table>
+<p>合计 <strong>5/12（41.67%）</strong>。这是六个预定字段的字符串精确匹配；错误、漏读和误把校验码识别为票号均原样计错。原图、真值来源、所有输出和错误详情见 external-classic-results.json。此结果不足以支持“高精度整票识别”声明；需要人工复核，不能靠金额关系补写缺失税额。</p>
+<h2>历史图片留出结果</h2>
+<p>0081–0100 共 20 张照片、599 个关键词：水平 GT 裁剪 479/500（95.8%），水平端到端 300/500（60%），全部端到端 300/599（50.08%），竖排 0/99。这组数据有票据身份重合，仅作历史图片级结果，不能当作独立泛化证明。完整原始记录保留为 vatid-image-holdout-results.json。</p>
+<h2>固定附件回归</h2>
+<p>23 张原始 PDF 直接读取文字层，三项锚点 69/69；4 张同源栅格衍生图走指定网络，为 10/12。合计 79/81；二者都不是独立测试，不得沿用旧版 PP-OCR 的 81/81。明细在私有交付包 evaluation-results.json；公开源码排除私有发票与参考值。</p>
+<h2>验收边界与剩余事项</h2>
+<p>三张新票的样本规模很小，上游预训练数据未完整公开，也无法排除原模型预训练重叠。低分辨率票头、长数字、密集表格与竖排仍有明显失败。输入和权重均保留哈希；此轮最终测试后未再修改网络、预处理或字段解析，所有成功与失败一并保留。</p>
+<p>当前 GitHub 未登录、托管预览中继不存在，当前 Docker CLI 也不可用；没有执行 Windows/macOS/容器/真实浏览器检查。源码、脚本和 CI 已准备，但不能把“有配置”写成“已通过”。需完成真实运行、审阅截图并修复发现的问题后，才可形成完整验收结论。</p>
+</section><section id="section-7"><h1>演示与答辩</h1>
+<ol>
+<li>启动本机服务，说明初始工作台是标记清楚的合成演示。</li>
+<li>在识别中心保持 CTPN → CRNN → CTC；上传 PNG，或对 PDF 勾选强制图像识别。</li>
+<li>打开复核工作区，展示指定网络标识、原件、识别框与结构化字段。</li>
+<li>对照原票人工修订并确认，展示重复与金额异常会阻止确认。</li>
+<li>在台账筛选并导出 Excel，说明长票号保存为文本，未确认票据不进入支出。</li>
+<li>查看审计、真实训练日志、权重哈希和最终独立评估，说明实际通过和待验收部分。</li>
+</ol>
+<h2>算法说明</h2>
+<p>Qt 改为前后端获得了用户授权；算法仍实际使用 CTPN、CRNN 与 CTC。CTPN 是有来源的原始预训练检测网络，CRNN 是经典七层卷积和两层双向 LSTM 并真实微调，CTC 的训练和推理解码都可检查。不能说从零训练了 CTPN，也不能把 PP-OCR 模型或其成绩作为指定网络成果。</p>
+<h2>如何解释结果</h2>
+<p>分别解释 PDF 文字层、固定衍生回归、开发裁剪和独立小样本。去重后的同一发票两张照片，水平关键词 GT 裁剪为 50/50，但端到端只命中 29/50，竖排 0/10；它们不能证明广泛的整票准确率。两张外部示例六项字段合计 5/12，原始错误必须展示。历史 20 张图片的 95.8% 裁剪成绩存在票据身份重合，只能列为图片留出测试，不能再称独立成绩。模型置信分数也不是准确率。</p>
+<h2>为什么人工复核仍然必要</h2>
+<p>遮挡、反光、纸张、字体、边框、密集数字和版式会导致误识别。格式和金额规则只能检查一致性，不能保证每个字符正确。所有新上传票据都需对照原件确认；项目不提供税务真伪或抵扣资格判断。</p>
+<h2>如何证明跨平台</h2>
+<p>提供实际 Windows/macOS/Linux、Docker 和 Chromium 工作流日志与产物。只有 workflow 文件、脚本或通过的 jsdom 测试不能证明这些环境已实测。当前待执行的部分按验收报告说明，不能答辩时口头改成通过。</p>
+</section><section id="section-8"><h1>训练与复现操作</h1>
+<p>本项目已经在 CPU 上完成两阶段 1200 步训练，无需你准备 GPU。当前机器实测分别约 80.2 秒与 154.6 秒；其他机器请先跑 100 步测速度再估算。建议 Python 3.12、4 核 CPU、8 GB RAM、5 GB 可用磁盘用于训练环境。下面命令以 Linux 为已验证环境；Windows 的解释器路径换为 <code>.venv\Scripts\python.exe</code>。</p>
+<h2>安装与源权重</h2>
+<pre><code class="language-bash">python start.py --install-only
+.venv/bin/python -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.8.0+cpu
+.venv/bin/python -m pip install -r requirements-training.txt
+.venv/bin/python scripts/download_training_sources.py
+</code></pre>
+<p>下载脚本取得固定来源的 CTPN 冻结图和原 CRNN 检查点并校验 SHA-256。原 checkpoint 用 <code>weights_only=True</code> 加载。日常运行无需安装 PyTorch、OpenVINO 和 ONNX 转换库。</p>
+<h2>准备训练数据</h2>
+<p>将原始 23 张 PDF 放在 <code>data/provided</code>，安装 Noto Sans CJK 和 Noto Serif CJK 字体。当前脚本使用 Linux 字体路径，其他系统应指定对应字体路径再运行，并记录字体变动；没有相同附件和字体不能声称逐字节复现权重。</p>
+<pre><code class="language-bash">.venv/bin/python training/prepare_crnn_data.py
+.venv/bin/python training/finetune_crnn.py --checkpoint training/source/crnn-source.pth --steps 400 --run-name required-crnn
+.venv/bin/python training/prepare_camera_data.py
+.venv/bin/python training/finetune_crnn.py --checkpoint training/runs/required-crnn/finetuned.pth --data training/camera-data --run-name camera-adaptation --steps 800
+</code></pre>
+<p>第一阶段标签来自 PDF 文字对象与明确合成字符串，第二阶段来自 VATID 官方训练集人工关键词标注，不使用 PP-OCR 标签，也不使用最终测试图片。所有步的 loss 和耗时逐行保存；元数据保存源检查点、数据清单和输出检查点哈希。</p>
+<h2>转换和数值核对</h2>
+<pre><code class="language-bash">.venv/bin/python training/convert_ctpn.py --source training/source/ctpn.pb
+.venv/bin/python training/export_crnn.py --checkpoint training/runs/camera-adaptation/finetuned.pth
+.venv/bin/python scripts/update_model_manifest.py
+.venv/bin/python scripts/checkpoint_model_parts.py
+</code></pre>
+<p>CTPN 以 OpenVINO 执行原始冻结图为参考，比较三个输入尺寸；CRNN 比较四个输入宽度，断言原始输出误差阈值，并检查 7 Conv / 2 BiLSTM。更新模型后必须更新 manifest 和模型分卷，并重新评估，不能继续使用旧权重的准确率。</p>
+<h2>独立评估</h2>
+<pre><code class="language-bash">.venv/bin/python scripts/fetch_evaluation_data.py
+.venv/bin/python scripts/evaluate_classic.py --dataset evaluation/vatid-final
+.venv/bin/python scripts/evaluate_external.py --download-only
+.venv/bin/python scripts/evaluate_external.py
+</code></pre>
+<p>原 0081–0100 有与训练集相同发票的不同照片，已经撤回“票据级独立”表述，保留原结果以便审计。按全部 100 张原图的印刷票号人工分组，保守排除训练、开发及全部历史评估 0001–0025、0051–0100 中的所有身份，余下 0030、0035，两张照片同属一张新票。公开分组和选择规则在 data/vatid-identity-audit.json，模型首次处理该子集前已经写定 data/evaluation-split.json。另两份外部官方文档示例的六项字段也在首次推理前人工抄录并固定。测试后未再修改网络权重、输入预处理和字段解析规则。</p>
+<p>报告记录每个输入、模型和实现的哈希；关键词协议采用 NFKC 并对双方去除标注未包含的标点空格，分别报告水平与竖排。外部字段采用预声明字符串精确匹配，不人工订正输出。全部独立数据只有三张不同发票，数量不足以证明广泛泛化。</p>
+<p>如果自行扩大实验而使用 NVIDIA GPU，需按 PyTorch 官方说明选择匹配驱动与 CUDA 构建，训练参数改为 <code>--device cuda</code>，先用 batch=8 检查显存，再测得速度。当前没有 GPU 实测时间，因此不提供未经测量的 GPU 耗时；当前交付推进也不以用户 GPU 为前提。</p>
+</section><section id="section-9"><h1>跨平台与浏览器验收操作</h1>
+<p>工作流 <code>.github/workflows/acceptance.yml</code> 包含 Windows/macOS/Linux 原生环境、真实 Chromium、Docker 三组作业。它们使用同一指定网络、模型哈希和合成 PNG。原生检查实际启动 HTTP 服务、上传识别、轮询、核对票号日期金额并下载 XLSX；浏览器检查桌面七页、手机布局、文件选择、指定 OCR、修订持久化和真实下载，保存截图与失败 trace。</p>
+<p><strong>当前这些远程作业尚未执行。</strong> 当前环境没有 GitHub 写入凭据；公开仓库可读取不等于允许提交或启动工作流。本机托管预览中继不可用，不能用真实浏览器完成本地界面验收；也没有 Windows/macOS 运行器和可用 Docker 守护进程。因此不能把配置或测试用例列为已通过。</p>
+<h2>仓库授权后</h2>
+<p>将已准备的 <code>delivery/required-networks</code> 分支推送到 <code>qjl-411/OCR</code> 即触发工作流。需要对该仓库有写入源码和工作流的授权。然后在仓库 Actions 页面等待所有作业完成，下载 native、docker 和 real-browser-evidence 产物；审阅真实截图与日志，修复失败后重跑相关部分。</p>
+<p>仅成功的实际作业和产物可写入最终验收表。Windows 与 Mac 的实际版本、CPU 架构、Python 版本由 smoke JSON 记录；库存在安装包不代表对应系统实测。</p>
+<h2>使用离线 Git bundle 的备选步骤</h2>
+<p>在已登录 GitHub 的本机新目录执行，将 BUNDLE_PATH 替换为下载的 bundle 的实际绝对路径：</p>
+<pre><code class="language-bash">git clone https://github.com/qjl-411/OCR.git piao-ocr-review
+cd piao-ocr-review
+git fetch BUNDLE_PATH refs/heads/delivery/required-networks
+git switch -c delivery/required-networks FETCH_HEAD
+git push -u origin delivery/required-networks
+</code></pre>
+<p>这会保留原始 main，提交新分支。公开分发包不含原始发票、私有回归参考、训练裁剪或本地数据库。模型权重的来源与授权边界保留在说明中。</p>
+<h2>本地复核</h2>
+<p>Windows：安装 Python 3.12 后运行 start.bat；macOS：运行 <code>sh start.sh</code>；Docker：<code>docker compose up --build -d</code>。验证上传、强制图像 PDF、识别框、修改后复核、重复限制、导出、刷新和重启后的持久化，核对桌面与窄屏文字溢出。真实界面截图只能证明相应界面状态，不能替代 OCR 准确率或跨系统运行结果。</p>
+</section><div class="foot">票序 v2.0.0 · 本手册可离线阅读或通过浏览器打印为 PDF。<br>浏览器视觉验收、跨操作系统和 Docker 实机验证的限制已在验收报告中明确说明。<br><a class="top-link" href="#top">返回文档开头</a></div></article></div></body></html>

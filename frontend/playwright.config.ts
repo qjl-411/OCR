@@ -1,0 +1,2 @@
+import { defineConfig } from '@playwright/test'
+export default defineConfig({testDir:'./e2e',workers:1,fullyParallel:false,timeout:120000,expect:{timeout:30000},reporter:[['list'],['html',{open:'never'}],['json',{outputFile:'test-results/browser-results.json'}]],use:{baseURL:'http://127.0.0.1:8000',browserName:'chromium',trace:'retain-on-failure',screenshot:'only-on-failure'},webServer:{command:'python scripts/serve.py',cwd:'..',url:'http://127.0.0.1:8000/api/health',reuseExistingServer:false,timeout:60000}})

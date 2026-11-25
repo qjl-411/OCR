@@ -1,0 +1,2 @@
+# Optional: regenerate the standalone HTML project handbook.
+markdown-it-py==4.0.0

@@ -1,0 +1,5173 @@
+{
+  "created_at": "2026-11-21T02:44:02.882588+00:00",
+  "engine": "ctpn_crnn_ctc",
+  "model_version": "ctpn-crnn-ctc-camera1200-r1",
+  "models": [
+    {
+      "file": "ctpn.onnx",
+      "bytes": 71589188,
+      "sha256": "88009f4b8e263ebfa03b7d108da340685836dc20a72b02b67cd434fb7bd1d64f"
+    },
+    {
+      "file": "crnn_cn.onnx",
+      "bytes": 47069411,
+      "sha256": "bcc6115d420cbb08ba5783794239be6ee91bef40068267307aa26fe89508fb1c"
+    },
+    {
+      "file": "charset_cn.txt",
+      "bytes": 19996,
+      "sha256": "0ab32c4bcaf8429550c5706a51174c6ca805ac0bccd4ace1aeab09d6946a89ae"
+    }
+  ],
+  "manifest_sha256": "de4067e800e1d825eafaae38e6bdab75b07fae43bc7aa16caab3ddea78ab3628",
+  "implementation_sha256": {
+    "backend/app/classic_ocr/pipeline.py": "a621328a092b88dad262998314ce26df96e361a9fb1c1ad4bda5ebe1cfb5df9e",
+    "backend/app/classic_ocr/ctc.py": "6404c7394d49f185543c0487ba2c4b796c2ffd8cf77749560d236920ebb7cc35",
+    "backend/app/classic_ocr/ctpn_postprocess.py": "9b78249b21db925759e40cdfe8359b31fe9bc16cb9f5b18eea1c6b5c7832d8e8",
+    "scripts/evaluate_classic.py": "413a4b6331c51a90d6639ce1b8989caef2e0d687eb5b1da250f2b4ce27b5125c"
+  },
+  "dataset": {
+    "repo": "FuxiJia/InvoiceDatasets",
+    "commit": "e0c2ab03a253552133f1a771b9a77eb20db20865",
+    "samples": [
+      "vat_0081",
+      "vat_0082",
+      "vat_0083",
+      "vat_0084",
+      "vat_0085",
+      "vat_0086",
+      "vat_0087",
+      "vat_0088",
+      "vat_0089",
+      "vat_0090",
+      "vat_0091",
+      "vat_0092",
+      "vat_0093",
+      "vat_0094",
+      "vat_0095",
+      "vat_0096",
+      "vat_0097",
+      "vat_0098",
+      "vat_0099",
+      "vat_0100"
+    ],
+    "selection_rule": "fixed contiguous IDs 0081 through 0100 from official VAT test split",
+    "use": "FINAL INDEPENDENT EVALUATION ONLY; never train or optimize",
+    "exclusions": "0001-0020 train; 0021-0025 crop development; 0051-0060 preprocessing development; 0061-0080 historical candidate; 0081-0100 final heldout"
+  },
+  "images_count": 20,
+  "inputs": [
+    {
+      "id": "vat_0081",
+      "image_sha256": "8f83eae125298fd28a78aa0a73276eff474144fe322fc7e26efd61fbe23b3409",
+      "annotation_sha256": "df20156eb74b12cba22253f39b0a7162066fca42e7763e1894f0ec764b19fd70"
+    },
+    {
+      "id": "vat_0082",
+      "image_sha256": "a9b689ab260f7f9f8d8e4ec47bc01b42ef2c695c4d7ca013c4b04294db4e4862",
+      "annotation_sha256": "6c593222b9dfe5f54bc288fb283a634d233cb2a0e437cb0c8f9634e0bb2ce8b1"
+    },
+    {
+      "id": "vat_0083",
+      "image_sha256": "a72e21ed2d55565203283f878b034aad99b1c9e959891ee4ea9ccb4db9d5abcc",
+      "annotation_sha256": "ae40749574dd2d2f9f65b2562644e7632ff07c245bf6404b8b61e5880dd71a4e"
+    },
+    {
+      "id": "vat_0084",
+      "image_sha256": "a47f30b053422180ffb4bacc07582a2fb6a65e03a967af427e1b355cbf5ecbf9",
+      "annotation_sha256": "a59b57b1b296f43b8b4aa3d4206665a3294e4c89711033543ed9878fcf0239f7"
+    },
+    {
+      "id": "vat_0085",
+      "image_sha256": "064aaaf0d183c906003876a5da1c32092e02011b6d3a94fc4577fcdc5a9cd52b",
+      "annotation_sha256": "3dc7cc2795bf84eafa6eb0411b1800b8e26fb709f8aa3af3f5f87dadaa13a7d9"
+    },
+    {
+      "id": "vat_0086",
+      "image_sha256": "434fa458ef0304a991337d12fd0aed76833336973a5080f1fb72e16481bee7f1",
+      "annotation_sha256": "cebaf7b45e1235a7b29bf32f0c4f82bde655f3d4525e295f3165789c3855c13e"
+    },
+    {
+      "id": "vat_0087",
+      "image_sha256": "aa84b620e391c3bea1f4ca51369178a4a002d8d64b691f00a2162fdf35b7a884",
+      "annotation_sha256": "f663f2d97a0b1cc8a53da7377218d77e37946d51762b375c860306da0cdcd5cd"
+    },
+    {
+      "id": "vat_0088",
+      "image_sha256": "d0a699c55d531731ee705e536959d6ad52675cd6a2fee033e7961bb81f9cb7af",
+      "annotation_sha256": "b37104b932067c83e0153c6987984faf39a5aeabacfe15e774dd1a6f0317dbb3"
+    },
+    {
+      "id": "vat_0089",
+      "image_sha256": "bcf0f4dd48db6fca415b3b30992f045e2c660f998f1a7ea7a0e8f6ddff059126",
+      "annotation_sha256": "b52317284590d179f194ff40aff61f5eb761eb68dd761d68bf1776ffe3735318"
+    },
+    {
+      "id": "vat_0090",
+      "image_sha256": "67a811b86ef7926fe974f09b1f717990ca7df1dc749f4f4a5015241636a8e9c8",
+      "annotation_sha256": "d0cde16ec16c12f67136fd2cea0eff7dbacd32d5745a726d537c9a44b5de1908"
+    },
+    {
+      "id": "vat_0091",
+      "image_sha256": "f0f5cff2373377d979c63d66333aa1f3de0fb87a53d54c5a69ae5eb1f7088186",
+      "annotation_sha256": "d9fbb6a9de67fc60b8cd877d99eedb25e4b2283c78565f437713e6ad7626f248"
+    },
+    {
+      "id": "vat_0092",
+      "image_sha256": "a91b8fb3e7fbd47c724cd7043f63f0cbdde2e98dab5726c975a4f6ec6be0ee87",
+      "annotation_sha256": "b1fa24dd59c302508a5db3e44a41d034a3b70a2d8d9523cf9e03510b994c4809"
+    },
+    {
+      "id": "vat_0093",
+      "image_sha256": "064ef4b7c8ca2fc04f83ac83f77d449e81336cd853c7fd7ef463e80ca972a07f",
+      "annotation_sha256": "bb55c4d27e35914f0bf70a1853e9154abb74d3bb2548bce6aa81ac6606183861"
+    },
+    {
+      "id": "vat_0094",
+      "image_sha256": "be81a656de03a00963704b8ca3746b5a4540cf1cb9aa3b5c496df882a99bdd71",
+      "annotation_sha256": "ed284f754f3aa33404a747dd9cfe82dfe09fe118810e6eb1e63c7473d4cb392b"
+    },
+    {
+      "id": "vat_0095",
+      "image_sha256": "690404b722d4d4243ae8bc9ecf806130e14a70c1f3cf65470650a1538dd22b97",
+      "annotation_sha256": "4a9170e6da778542a9427826550c017fbf3dcc6797bb6f13ef620bc8a2be0dbd"
+    },
+    {
+      "id": "vat_0096",
+      "image_sha256": "c94d65f15083e61504978f3d25276d27dfeee9d7b83a8871a7fba3336d9fbf07",
+      "annotation_sha256": "45b4ea7e8d7b9437ae619154f9c1ea2cb096357a2103456c6dfbdacc965d6fcb"
+    },
+    {
+      "id": "vat_0097",
+      "image_sha256": "34e673747ea0ce85d86e4b19e082bb9cbd70fba6e352a9d393cffe7f95a6b9c6",
+      "annotation_sha256": "1d91a8866f31b5ab916a2751ef21d22d7d874218a87f2d8867b9a456f8ae96f3"
+    },
+    {
+      "id": "vat_0098",
+      "image_sha256": "67f743eea9dc228a99f773ab2658814c63e4481865680867a579a5623f5428df",
+      "annotation_sha256": "65e9e34f89580ba5f272340ac48c9c6694f34295892a9adc5bd4461e0ccc3f74"
+    },
+    {
+      "id": "vat_0099",
+      "image_sha256": "251b17f9771d458a541ff2aefdfe5492c943b266122d43db21f9878a00196949",
+      "annotation_sha256": "659629aca1bd9a2a6622d0008052fc9c3555300625e7b8eac525308a1629574b"
+    },
+    {
+      "id": "vat_0100",
+      "image_sha256": "69ab3a7bc024f257cef36a27586764c8009627499363224687b6e6b427265769",
+      "annotation_sha256": "9653defc30f82a783b5fa92d280663d464c156b890e10adaeedad95d5ea95c04"
+    }
+  ],
+  "metrics": {
+    "all": {
+      "keywords": 599,
+      "covered": 427,
+      "spotting_matches": 300,
+      "crop_exact": 479,
+      "crop_edits": 306,
+      "characters": 2037,
+      "keyword_coverage_recall": 0.7128547579298832,
+      "keyword_spotting_recall": 0.5008347245409015,
+      "crop_exact_accuracy": 0.7996661101836394,
+      "crop_cer": 0.15022091310751104
+    },
+    "horizontal": {
+      "keywords": 500,
+      "covered": 427,
+      "spotting_matches": 300,
+      "crop_exact": 479,
+      "crop_edits": 29,
+      "characters": 1760,
+      "keyword_coverage_recall": 0.854,
+      "keyword_spotting_recall": 0.6,
+      "crop_exact_accuracy": 0.958,
+      "crop_cer": 0.016477272727272726
+    },
+    "vertical": {
+      "keywords": 99,
+      "covered": 0,
+      "spotting_matches": 0,
+      "crop_exact": 0,
+      "crop_edits": 277,
+      "characters": 277,
+      "keyword_coverage_recall": 0.0,
+      "keyword_spotting_recall": 0.0,
+      "crop_exact_accuracy": 0.0,
+      "crop_cer": 1.0
+    }
+  },
+  "image_results": [
+    {
+      "id": "vat_0081",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 8.143,
+      "detected_lines": 58,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销3",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "销",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0082",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 7.015,
+      "detected_lines": 61,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销售方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "9",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0083",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 6.508,
+      "detected_lines": 56,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名利",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 1
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销售方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "票",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0084",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 6.845,
+      "detected_lines": 60,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销售方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "票",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0085",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 6.991,
+      "detected_lines": 51,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销售方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "票",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0086",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 6.729,
+      "detected_lines": 61,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开奖人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 1
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销售方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "票",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0087",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 6.876,
+      "detected_lines": 57,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销售方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "别",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "售",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0088",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 6.918,
+      "detected_lines": 54,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名颗",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 1
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开崇人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 1
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销售方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "署",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0089",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 6.556,
+      "detected_lines": 46,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销售方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合行大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 1
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "暑",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0090",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 6.722,
+      "detected_lines": 61,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "会计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 1
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销售方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日荆",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 1
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "署",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0091",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 7.219,
+      "detected_lines": 67,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名颖",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 1
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销4方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 1
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "票",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0092",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 6.652,
+      "detected_lines": 59,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "到方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电福",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 1
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "9",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0093",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 6.845,
+      "detected_lines": 59,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销信方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 1
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "票",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0094",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 6.632,
+      "detected_lines": 53,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "爪方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "暑",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0095",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 6.625,
+      "detected_lines": 54,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 1
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "票",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0096",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 7.066,
+      "detected_lines": 64,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销售方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "鲁",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0097",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 6.826,
+      "detected_lines": 53,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销售方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "暑",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0098",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 6.755,
+      "detected_lines": 58,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销立",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电治",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 1
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "署",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    },
+    {
+      "id": "vat_0099",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 5.88,
+      "detected_lines": 47,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "开销玄",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名服",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 1
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        }
+      ]
+    },
+    {
+      "id": "vat_0100",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 6.752,
+      "detected_lines": 62,
+      "keywords": [
+        {
+          "ground_truth": "备注",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 2
+        },
+        {
+          "ground_truth": "单价",
+          "crop_prediction": "单价",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "单位",
+          "crop_prediction": "单位",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "复核",
+          "crop_prediction": "复核",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "合计",
+          "crop_prediction": "合计",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "金额",
+          "crop_prediction": "金额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "名称",
+          "crop_prediction": "名称",
+          "orientation": "horizontal",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "数量",
+          "crop_prediction": "数量",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税额",
+          "crop_prediction": "税额",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "税率",
+          "crop_prediction": "税率",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "小写",
+          "crop_prediction": "小",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 1
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "开票人",
+          "crop_prediction": "开票人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "密码区",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "收款人",
+          "crop_prediction": "收款人",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        },
+        {
+          "ground_truth": "销售方",
+          "crop_prediction": "销售方",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "地址电话",
+          "crop_prediction": "地址电话",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "服务名称",
+          "crop_prediction": "服务名称",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "规格型号",
+          "crop_prediction": "规格型号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开票日期",
+          "crop_prediction": "开票日期",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "价税合计大写",
+          "crop_prediction": "价税合计大写",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": false,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "开户行及账号",
+          "crop_prediction": "开户行及账号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "纳税人识别号",
+          "crop_prediction": "纳税人识别号",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "货物或应税劳务",
+          "crop_prediction": "货物或应税劳务",
+          "orientation": "horizontal",
+          "covered": true,
+          "spotted": true,
+          "crop_edits": 0
+        },
+        {
+          "ground_truth": "购买方",
+          "crop_prediction": "票",
+          "orientation": "vertical",
+          "covered": false,
+          "spotted": false,
+          "crop_edits": 3
+        }
+      ]
+    }
+  ],
+  "seconds": 136.809,
+  "python": "3.12.14",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "scope": "IMAGE-LEVEL HOLDOUT ONLY. Audit found physical invoice identity overlap across upstream train/test images; NOT a strictly invoice-disjoint benchmark.",
+  "protocol": {
+    "normalization": "NFKC and removal of punctuation and whitespace on both sides, because the keyword annotations omit printed punctuation",
+    "coverage_threshold": 0.8,
+    "spotting": "keyword occurs in a predicted line covering >=80% of the GT rectangle",
+    "crop_recognition": "GT crop CRNN+CTC component metric, separate from end-to-end spotting",
+    "ppocr_used": false,
+    "pdf_text_used": false,
+    "test_data_used_for_project_training_or_tuning": false
+  },
+  "limitations": [
+    "Invoice numbers repeat across camera-training and image-holdout photographs. A separate identity-disjoint subset is required.",
+    "Small contiguous fixed subset, not a broad general invoice benchmark.",
+    "Upstream pretraining data is incompletely documented; upstream overlap cannot be ruled out.",
+    "Vertical text reported separately; the classic recognizer is horizontal.",
+    "No global precision/F1 because other invoice text is not annotated."
+  ]
+}

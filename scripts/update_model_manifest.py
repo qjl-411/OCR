@@ -1,0 +1,14 @@
+"""Freeze runtime weights and actual training provenance before evaluation."""
+import argparse,hashlib,json
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1]
+def main():
+    p=argparse.ArgumentParser();p.add_argument('--version',default='ctpn-crnn-ctc-camera1200-r1');a=p.parse_args();folder=ROOT/'models/classic'
+    runs=[]
+    for name in ['required-crnn','camera-adaptation']:
+        path=ROOT/f'training/runs/{name}/run.json';record=json.loads(path.read_text());assert record['completed_steps']==record['steps']
+        runs.append({'name':name,'record':path.relative_to(ROOT).as_posix(),'record_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'completed_steps':record['completed_steps'],'checkpoint_sha256':record['output_sha256'],'seconds':record['elapsed_seconds'],'device':record['device']})
+    assert runs[-1]['checkpoint_sha256']==json.loads((ROOT/'docs/crnn-export-results.json').read_text())['checkpoint_sha256']
+    manifest={'version':a.version,'pipeline':['CTPN','CRNN','CTC'],'runtime':'ONNX Runtime 1.23.2 CPU; telemetry disabled; no PP-OCR fallback','files':[{'file':n,'bytes':(folder/n).stat().st_size,'sha256':hashlib.sha256((folder/n).read_bytes()).hexdigest()} for n in ['ctpn.onnx','crnn_cn.onnx','charset_cn.txt']],'training_runs':runs,'total_project_finetuning_steps':sum(r['completed_steps'] for r in runs),'sources':{'ctpn':{'url':'https://storage.openvinotoolkit.org/repositories/open_model_zoo/public/2022.1/ctpn/ctpn.pb','upstream':'https://github.com/eragonruan/text-detection-ctpn','source_sha256':'09b3a0cc57eb826dd6b6fa95a03e078ad435b7b5fb0186dad2abdb98a4fdf64a','trained_here':False,'conversion_report':'docs/ctpn-conversion-results.json'},'crnn':{'url':'https://github.com/Sierkinhane/CRNN_Chinese_Characters_Rec/blob/a565687c4076b729d4059593b7570dd388055af4/output/checkpoints/mixed_second_finetune_acc_97P7.pth','source_sha256':'7836afdb7f56cae4d5ef28532c33c1642f7f9a5e65cef5bd6fa9da00595a8691','fine_tuned_here':True,'license':'No explicit weight license found upstream; application license does not grant third-party model rights.'}},'preprocessing':{'detector_short_side':1000,'detector_max_side':2000,'gray_height':32,'width_factor':160/280,'mean':.588,'std':.193,'exposure_percentiles':[2,96],'invoice_number_reread_factors':[.65,.7,.85],'amount_reread_factors':[.7,.85],'reread_policy':'select only actual same-CRNN/CTC predictions; never add decimal points or digits'},'evaluation_policy':'Invoice-identity-disjoint VATID protocol: data/evaluation-split.json. Original 0081-0100 is only image-level holdout with invoice identity overlap. External examples are fixed before inference. No PP-OCR or PDF text counts toward network metrics.'}
+    (folder/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps({'version':a.version,'files':manifest['files']}),flush=True)
+if __name__=='__main__':main()

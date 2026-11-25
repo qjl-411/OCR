@@ -1,0 +1,610 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>票序 接口参考</title><style>
+    *{box-sizing:border-box}body{font-family:system-ui,"Microsoft YaHei",sans-serif;background:#f3f7f4;color:#263f2d;margin:0;padding:38px 20px;font-size:16px}main{max-width:1100px;margin:auto}header{padding:30px;background:#164c3d;color:#fff;border-radius:14px;margin-bottom:24px}header p{color:#c1d7c7;line-height:1.8}header a{color:#e3efd9}h1{font-size:28px;margin:0 0 16px}h2{font-size:20px;margin:28px 0 15px}h3{font-size:15px;color:#67815c;margin:22px 0 12px}p{font-size:14px;line-height:1.8}details{border:1px solid #dce6d6;border-radius:8px;background:white;margin:10px 0;overflow:hidden}summary{cursor:pointer;display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:17px;font-size:14px}summary b{font-size:12px;min-width:60px;text-align:center;padding:5px;border-radius:4px;background:#eaf3eb;color:#477451}.post{background:#edf2fc;color:#557da4}.delete{background:#faece8;color:#b7745d}.patch{background:#fbf3df;color:#ae9866}summary span{margin-left:auto;color:#8c9e81}code,pre{font-family:Consolas,monospace}.detail{padding:0 20px 22px}pre{font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-all;background:#f6f9f3;border:1px solid #e6eedf;padding:18px;border-radius:7px;color:#5f7b51;max-height:500px;overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:11px;border:1px solid #e4ebdd;text-align:left}th{background:#f0f6e9}.note{padding:18px 22px;background:#fff;border:1px solid #e1eadb;border-radius:10px;color:#738a64}footer{font-size:12px;color:#93a28b;margin-top:30px}@media(max-width:600px){summary{gap:10px;font-size:12px}summary span{width:100%;margin-left:0}body{padding:20px 12px}header{padding:23px}h1{font-size:24px}.detail{padding:0 12px 15px}table{font-size:12px}th,td{padding:6px}}
+    </style><main><header><h1>票序 智能发票系统 接口参考</h1><p>本地 API · OpenAPI 3 · v1.0.0<br>此页不依赖外部脚本或在线 CDN，离线也可阅读。</p><a href="openapi.json">查看 OpenAPI JSON</a></header><div class="note"><p>上传返回 202，代表任务被接收。请轮询任务状态获取逐文件结果。金额以字符串表示，未知值为 null。修改和复核需携带 revision，版本冲突返回 409。金额统计只计入已确认、非重复票据。</p></div><h2>接口列表</h2><details><summary><b class='get'>GET</b><code>/api/health</code><span>Health</span></summary><div class='detail'><p>无查询或路径参数。</p><h3>响应</h3><pre>{
+  &quot;200&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='get'>GET</b><code>/api/meta</code><span>Meta</span></summary><div class='detail'><p>无查询或路径参数。</p><h3>响应</h3><pre>{
+  &quot;200&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='get'>GET</b><code>/api/dashboard</code><span>Dashboard</span></summary><div class='detail'><h3>参数</h3><table><tr><th>名称</th><th>位置</th><th>约束</th><th>类型与默认值</th></tr><tr><td><code>start</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;Start&quot;}</code></td></tr><tr><td><code>end</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;End&quot;}</code></td></tr><tr><td><code>source</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;Source&quot;}</code></td></tr></table><h3>响应</h3><pre>{
+  &quot;200&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  },
+  &quot;422&quot;: {
+    &quot;description&quot;: &quot;Validation Error&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {
+          &quot;$ref&quot;: &quot;#/components/schemas/HTTPValidationError&quot;
+        }
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='get'>GET</b><code>/api/invoices</code><span>Invoices</span></summary><div class='detail'><h3>参数</h3><table><tr><th>名称</th><th>位置</th><th>约束</th><th>类型与默认值</th></tr><tr><td><code>q</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;Q&quot;}</code></td></tr><tr><td><code>status</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;Status&quot;}</code></td></tr><tr><td><code>category</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;Category&quot;}</code></td></tr><tr><td><code>source</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;Source&quot;}</code></td></tr><tr><td><code>start</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;Start&quot;}</code></td></tr><tr><td><code>end</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;End&quot;}</code></td></tr><tr><td><code>sort</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;newest&quot;, &quot;title&quot;: &quot;Sort&quot;}</code></td></tr><tr><td><code>page</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;integer&quot;, &quot;minimum&quot;: 1, &quot;default&quot;: 1, &quot;title&quot;: &quot;Page&quot;}</code></td></tr><tr><td><code>page_size</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;integer&quot;, &quot;maximum&quot;: 100, &quot;minimum&quot;: 1, &quot;default&quot;: 10, &quot;title&quot;: &quot;Page Size&quot;}</code></td></tr></table><h3>响应</h3><pre>{
+  &quot;200&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  },
+  &quot;422&quot;: {
+    &quot;description&quot;: &quot;Validation Error&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {
+          &quot;$ref&quot;: &quot;#/components/schemas/HTTPValidationError&quot;
+        }
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='get'>GET</b><code>/api/invoices/{invoice_id}</code><span>Invoice</span></summary><div class='detail'><h3>参数</h3><table><tr><th>名称</th><th>位置</th><th>约束</th><th>类型与默认值</th></tr><tr><td><code>invoice_id</code></td><td>path</td><td>必填</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;title&quot;: &quot;Invoice Id&quot;}</code></td></tr></table><h3>响应</h3><pre>{
+  &quot;200&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  },
+  &quot;422&quot;: {
+    &quot;description&quot;: &quot;Validation Error&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {
+          &quot;$ref&quot;: &quot;#/components/schemas/HTTPValidationError&quot;
+        }
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='patch'>PATCH</b><code>/api/invoices/{invoice_id}</code><span>Patch</span></summary><div class='detail'><h3>参数</h3><table><tr><th>名称</th><th>位置</th><th>约束</th><th>类型与默认值</th></tr><tr><td><code>invoice_id</code></td><td>path</td><td>必填</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;title&quot;: &quot;Invoice Id&quot;}</code></td></tr></table><h3>请求体</h3><pre>{
+  &quot;required&quot;: true,
+  &quot;content&quot;: {
+    &quot;application/json&quot;: {
+      &quot;schema&quot;: {
+        &quot;$ref&quot;: &quot;#/components/schemas/PatchInvoice&quot;
+      }
+    }
+  }
+}</pre><h3>响应</h3><pre>{
+  &quot;200&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  },
+  &quot;422&quot;: {
+    &quot;description&quot;: &quot;Validation Error&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {
+          &quot;$ref&quot;: &quot;#/components/schemas/HTTPValidationError&quot;
+        }
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='delete'>DELETE</b><code>/api/invoices/{invoice_id}</code><span>Remove</span></summary><div class='detail'><h3>参数</h3><table><tr><th>名称</th><th>位置</th><th>约束</th><th>类型与默认值</th></tr><tr><td><code>invoice_id</code></td><td>path</td><td>必填</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;title&quot;: &quot;Invoice Id&quot;}</code></td></tr></table><h3>响应</h3><pre>{
+  &quot;200&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  },
+  &quot;422&quot;: {
+    &quot;description&quot;: &quot;Validation Error&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {
+          &quot;$ref&quot;: &quot;#/components/schemas/HTTPValidationError&quot;
+        }
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='get'>GET</b><code>/api/invoices/{invoice_id}/preview</code><span>Preview</span></summary><div class='detail'><h3>参数</h3><table><tr><th>名称</th><th>位置</th><th>约束</th><th>类型与默认值</th></tr><tr><td><code>invoice_id</code></td><td>path</td><td>必填</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;title&quot;: &quot;Invoice Id&quot;}</code></td></tr></table><h3>响应</h3><pre>{
+  &quot;200&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  },
+  &quot;422&quot;: {
+    &quot;description&quot;: &quot;Validation Error&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {
+          &quot;$ref&quot;: &quot;#/components/schemas/HTTPValidationError&quot;
+        }
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='get'>GET</b><code>/api/invoices/{invoice_id}/original</code><span>Original</span></summary><div class='detail'><h3>参数</h3><table><tr><th>名称</th><th>位置</th><th>约束</th><th>类型与默认值</th></tr><tr><td><code>invoice_id</code></td><td>path</td><td>必填</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;title&quot;: &quot;Invoice Id&quot;}</code></td></tr></table><h3>响应</h3><pre>{
+  &quot;200&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  },
+  &quot;422&quot;: {
+    &quot;description&quot;: &quot;Validation Error&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {
+          &quot;$ref&quot;: &quot;#/components/schemas/HTTPValidationError&quot;
+        }
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='post'>POST</b><code>/api/invoices/{invoice_id}/review</code><span>Review</span></summary><div class='detail'><h3>参数</h3><table><tr><th>名称</th><th>位置</th><th>约束</th><th>类型与默认值</th></tr><tr><td><code>invoice_id</code></td><td>path</td><td>必填</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;title&quot;: &quot;Invoice Id&quot;}</code></td></tr></table><h3>请求体</h3><pre>{
+  &quot;required&quot;: true,
+  &quot;content&quot;: {
+    &quot;application/json&quot;: {
+      &quot;schema&quot;: {
+        &quot;$ref&quot;: &quot;#/components/schemas/Review&quot;
+      }
+    }
+  }
+}</pre><h3>响应</h3><pre>{
+  &quot;200&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  },
+  &quot;422&quot;: {
+    &quot;description&quot;: &quot;Validation Error&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {
+          &quot;$ref&quot;: &quot;#/components/schemas/HTTPValidationError&quot;
+        }
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='post'>POST</b><code>/api/imports</code><span>Upload</span></summary><div class='detail'><p>无查询或路径参数。</p><h3>请求体</h3><pre>{
+  &quot;content&quot;: {
+    &quot;multipart/form-data&quot;: {
+      &quot;schema&quot;: {
+        &quot;$ref&quot;: &quot;#/components/schemas/Body_upload_api_imports_post&quot;
+      }
+    }
+  },
+  &quot;required&quot;: true
+}</pre><h3>响应</h3><pre>{
+  &quot;202&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  },
+  &quot;422&quot;: {
+    &quot;description&quot;: &quot;Validation Error&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {
+          &quot;$ref&quot;: &quot;#/components/schemas/HTTPValidationError&quot;
+        }
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='post'>POST</b><code>/api/datasets/{source}/import</code><span>Import Dataset</span></summary><div class='detail'><h3>参数</h3><table><tr><th>名称</th><th>位置</th><th>约束</th><th>类型与默认值</th></tr><tr><td><code>source</code></td><td>path</td><td>必填</td><td><code>{&quot;enum&quot;: [&quot;provided&quot;, &quot;demo&quot;], &quot;type&quot;: &quot;string&quot;, &quot;title&quot;: &quot;Source&quot;}</code></td></tr><tr><td><code>pipeline</code></td><td>query</td><td>可选</td><td><code>{&quot;enum&quot;: [&quot;classic&quot;, &quot;ppocr&quot;], &quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;classic&quot;, &quot;title&quot;: &quot;Pipeline&quot;}</code></td></tr><tr><td><code>force_ocr</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;title&quot;: &quot;Force Ocr&quot;}</code></td></tr></table><h3>响应</h3><pre>{
+  &quot;202&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  },
+  &quot;422&quot;: {
+    &quot;description&quot;: &quot;Validation Error&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {
+          &quot;$ref&quot;: &quot;#/components/schemas/HTTPValidationError&quot;
+        }
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='get'>GET</b><code>/api/datasets/demo/sample</code><span>Demo Sample</span></summary><div class='detail'><p>无查询或路径参数。</p><h3>响应</h3><pre>{
+  &quot;200&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='get'>GET</b><code>/api/jobs</code><span>Jobs</span></summary><div class='detail'><p>无查询或路径参数。</p><h3>响应</h3><pre>{
+  &quot;200&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='get'>GET</b><code>/api/jobs/{job_id}</code><span>Job</span></summary><div class='detail'><h3>参数</h3><table><tr><th>名称</th><th>位置</th><th>约束</th><th>类型与默认值</th></tr><tr><td><code>job_id</code></td><td>path</td><td>必填</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;title&quot;: &quot;Job Id&quot;}</code></td></tr></table><h3>响应</h3><pre>{
+  &quot;200&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  },
+  &quot;422&quot;: {
+    &quot;description&quot;: &quot;Validation Error&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {
+          &quot;$ref&quot;: &quot;#/components/schemas/HTTPValidationError&quot;
+        }
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='get'>GET</b><code>/api/export</code><span>Export Data</span></summary><div class='detail'><h3>参数</h3><table><tr><th>名称</th><th>位置</th><th>约束</th><th>类型与默认值</th></tr><tr><td><code>format</code></td><td>query</td><td>可选</td><td><code>{&quot;enum&quot;: [&quot;xlsx&quot;, &quot;csv&quot;, &quot;json&quot;], &quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;xlsx&quot;, &quot;title&quot;: &quot;Format&quot;}</code></td></tr><tr><td><code>ids</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;Ids&quot;}</code></td></tr><tr><td><code>q</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;Q&quot;}</code></td></tr><tr><td><code>status</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;Status&quot;}</code></td></tr><tr><td><code>category</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;Category&quot;}</code></td></tr><tr><td><code>source</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;Source&quot;}</code></td></tr><tr><td><code>start</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;Start&quot;}</code></td></tr><tr><td><code>end</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;End&quot;}</code></td></tr></table><h3>响应</h3><pre>{
+  &quot;200&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  },
+  &quot;422&quot;: {
+    &quot;description&quot;: &quot;Validation Error&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {
+          &quot;$ref&quot;: &quot;#/components/schemas/HTTPValidationError&quot;
+        }
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='get'>GET</b><code>/api/audit</code><span>Audits</span></summary><div class='detail'><h3>参数</h3><table><tr><th>名称</th><th>位置</th><th>约束</th><th>类型与默认值</th></tr><tr><td><code>action</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;string&quot;, &quot;default&quot;: &quot;&quot;, &quot;title&quot;: &quot;Action&quot;}</code></td></tr><tr><td><code>page</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;integer&quot;, &quot;minimum&quot;: 1, &quot;default&quot;: 1, &quot;title&quot;: &quot;Page&quot;}</code></td></tr><tr><td><code>page_size</code></td><td>query</td><td>可选</td><td><code>{&quot;type&quot;: &quot;integer&quot;, &quot;maximum&quot;: 100, &quot;minimum&quot;: 1, &quot;default&quot;: 20, &quot;title&quot;: &quot;Page Size&quot;}</code></td></tr></table><h3>响应</h3><pre>{
+  &quot;200&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  },
+  &quot;422&quot;: {
+    &quot;description&quot;: &quot;Validation Error&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {
+          &quot;$ref&quot;: &quot;#/components/schemas/HTTPValidationError&quot;
+        }
+      }
+    }
+  }
+}</pre></div></details><details><summary><b class='patch'>PATCH</b><code>/api/settings</code><span>Settings</span></summary><div class='detail'><p>无查询或路径参数。</p><h3>请求体</h3><pre>{
+  &quot;content&quot;: {
+    &quot;application/json&quot;: {
+      &quot;schema&quot;: {
+        &quot;$ref&quot;: &quot;#/components/schemas/Settings&quot;
+      }
+    }
+  },
+  &quot;required&quot;: true
+}</pre><h3>响应</h3><pre>{
+  &quot;200&quot;: {
+    &quot;description&quot;: &quot;Successful Response&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {}
+      }
+    }
+  },
+  &quot;422&quot;: {
+    &quot;description&quot;: &quot;Validation Error&quot;,
+    &quot;content&quot;: {
+      &quot;application/json&quot;: {
+        &quot;schema&quot;: {
+          &quot;$ref&quot;: &quot;#/components/schemas/HTTPValidationError&quot;
+        }
+      }
+    }
+  }
+}</pre></div></details><h2>数据结构</h2><details><summary>展开完整模型定义</summary><div class="detail"><pre>{
+  &quot;schemas&quot;: {
+    &quot;Body_upload_api_imports_post&quot;: {
+      &quot;properties&quot;: {
+        &quot;files&quot;: {
+          &quot;items&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;contentMediaType&quot;: &quot;application/octet-stream&quot;
+          },
+          &quot;type&quot;: &quot;array&quot;,
+          &quot;title&quot;: &quot;Files&quot;
+        },
+        &quot;pipeline&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;enum&quot;: [
+            &quot;classic&quot;,
+            &quot;ppocr&quot;
+          ],
+          &quot;title&quot;: &quot;Pipeline&quot;,
+          &quot;default&quot;: &quot;classic&quot;
+        },
+        &quot;force_ocr&quot;: {
+          &quot;type&quot;: &quot;boolean&quot;,
+          &quot;title&quot;: &quot;Force Ocr&quot;,
+          &quot;default&quot;: false
+        }
+      },
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;required&quot;: [
+        &quot;files&quot;
+      ],
+      &quot;title&quot;: &quot;Body_upload_api_imports_post&quot;
+    },
+    &quot;HTTPValidationError&quot;: {
+      &quot;properties&quot;: {
+        &quot;detail&quot;: {
+          &quot;items&quot;: {
+            &quot;$ref&quot;: &quot;#/components/schemas/ValidationError&quot;
+          },
+          &quot;type&quot;: &quot;array&quot;,
+          &quot;title&quot;: &quot;Detail&quot;
+        }
+      },
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;title&quot;: &quot;HTTPValidationError&quot;
+    },
+    &quot;PatchInvoice&quot;: {
+      &quot;properties&quot;: {
+        &quot;revision&quot;: {
+          &quot;type&quot;: &quot;integer&quot;,
+          &quot;title&quot;: &quot;Revision&quot;
+        },
+        &quot;invoice_number&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;maxLength&quot;: 32,
+          &quot;title&quot;: &quot;Invoice Number&quot;
+        },
+        &quot;invoice_code&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;maxLength&quot;: 20,
+          &quot;title&quot;: &quot;Invoice Code&quot;,
+          &quot;default&quot;: &quot;&quot;
+        },
+        &quot;invoice_date&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;maxLength&quot;: 20,
+          &quot;title&quot;: &quot;Invoice Date&quot;
+        },
+        &quot;invoice_type&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;maxLength&quot;: 40,
+          &quot;title&quot;: &quot;Invoice Type&quot;
+        },
+        &quot;buyer_name&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;maxLength&quot;: 200,
+          &quot;title&quot;: &quot;Buyer Name&quot;
+        },
+        &quot;buyer_tax_id&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;maxLength&quot;: 32,
+          &quot;title&quot;: &quot;Buyer Tax Id&quot;,
+          &quot;default&quot;: &quot;&quot;
+        },
+        &quot;seller_name&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;maxLength&quot;: 200,
+          &quot;title&quot;: &quot;Seller Name&quot;
+        },
+        &quot;seller_tax_id&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;maxLength&quot;: 32,
+          &quot;title&quot;: &quot;Seller Tax Id&quot;,
+          &quot;default&quot;: &quot;&quot;
+        },
+        &quot;subtotal&quot;: {
+          &quot;anyOf&quot;: [
+            {
+              &quot;type&quot;: &quot;string&quot;
+            },
+            {
+              &quot;type&quot;: &quot;null&quot;
+            }
+          ],
+          &quot;title&quot;: &quot;Subtotal&quot;
+        },
+        &quot;tax_amount&quot;: {
+          &quot;anyOf&quot;: [
+            {
+              &quot;type&quot;: &quot;string&quot;
+            },
+            {
+              &quot;type&quot;: &quot;null&quot;
+            }
+          ],
+          &quot;title&quot;: &quot;Tax Amount&quot;
+        },
+        &quot;total&quot;: {
+          &quot;anyOf&quot;: [
+            {
+              &quot;type&quot;: &quot;string&quot;
+            },
+            {
+              &quot;type&quot;: &quot;null&quot;
+            }
+          ],
+          &quot;title&quot;: &quot;Total&quot;
+        },
+        &quot;tax_rates&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;maxLength&quot;: 80,
+          &quot;title&quot;: &quot;Tax Rates&quot;,
+          &quot;default&quot;: &quot;&quot;
+        },
+        &quot;category&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;enum&quot;: [
+            &quot;差旅交通&quot;,
+            &quot;餐饮招待&quot;,
+            &quot;办公采购&quot;,
+            &quot;技术服务&quot;,
+            &quot;其他费用&quot;
+          ],
+          &quot;title&quot;: &quot;Category&quot;
+        },
+        &quot;remark&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;maxLength&quot;: 2000,
+          &quot;title&quot;: &quot;Remark&quot;,
+          &quot;default&quot;: &quot;&quot;
+        }
+      },
+      &quot;additionalProperties&quot;: false,
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;required&quot;: [
+        &quot;revision&quot;,
+        &quot;invoice_number&quot;,
+        &quot;invoice_date&quot;,
+        &quot;invoice_type&quot;,
+        &quot;buyer_name&quot;,
+        &quot;seller_name&quot;,
+        &quot;category&quot;
+      ],
+      &quot;title&quot;: &quot;PatchInvoice&quot;
+    },
+    &quot;Review&quot;: {
+      &quot;properties&quot;: {
+        &quot;revision&quot;: {
+          &quot;type&quot;: &quot;integer&quot;,
+          &quot;title&quot;: &quot;Revision&quot;
+        },
+        &quot;verdict&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;enum&quot;: [
+            &quot;approved&quot;,
+            &quot;rejected&quot;,
+            &quot;needs_review&quot;
+          ],
+          &quot;title&quot;: &quot;Verdict&quot;
+        },
+        &quot;note&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;maxLength&quot;: 1000,
+          &quot;title&quot;: &quot;Note&quot;,
+          &quot;default&quot;: &quot;&quot;
+        }
+      },
+      &quot;additionalProperties&quot;: false,
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;required&quot;: [
+        &quot;revision&quot;,
+        &quot;verdict&quot;
+      ],
+      &quot;title&quot;: &quot;Review&quot;
+    },
+    &quot;Settings&quot;: {
+      &quot;properties&quot;: {
+        &quot;workspace_name&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;maxLength&quot;: 40,
+          &quot;minLength&quot;: 1,
+          &quot;title&quot;: &quot;Workspace Name&quot;
+        },
+        &quot;confidence_threshold&quot;: {
+          &quot;type&quot;: &quot;number&quot;,
+          &quot;maximum&quot;: 1.0,
+          &quot;minimum&quot;: 0.5,
+          &quot;title&quot;: &quot;Confidence Threshold&quot;
+        },
+        &quot;amount_tolerance&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;enum&quot;: [
+            &quot;0.00&quot;,
+            &quot;0.01&quot;,
+            &quot;0.02&quot;
+          ],
+          &quot;title&quot;: &quot;Amount Tolerance&quot;,
+          &quot;default&quot;: &quot;0.02&quot;
+        }
+      },
+      &quot;additionalProperties&quot;: false,
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;required&quot;: [
+        &quot;workspace_name&quot;,
+        &quot;confidence_threshold&quot;
+      ],
+      &quot;title&quot;: &quot;Settings&quot;
+    },
+    &quot;ValidationError&quot;: {
+      &quot;properties&quot;: {
+        &quot;loc&quot;: {
+          &quot;items&quot;: {
+            &quot;anyOf&quot;: [
+              {
+                &quot;type&quot;: &quot;string&quot;
+              },
+              {
+                &quot;type&quot;: &quot;integer&quot;
+              }
+            ]
+          },
+          &quot;type&quot;: &quot;array&quot;,
+          &quot;title&quot;: &quot;Location&quot;
+        },
+        &quot;msg&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;title&quot;: &quot;Message&quot;
+        },
+        &quot;type&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;title&quot;: &quot;Error Type&quot;
+        },
+        &quot;input&quot;: {
+          &quot;title&quot;: &quot;Input&quot;
+        },
+        &quot;ctx&quot;: {
+          &quot;type&quot;: &quot;object&quot;,
+          &quot;title&quot;: &quot;Context&quot;
+        }
+      },
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;required&quot;: [
+        &quot;loc&quot;,
+        &quot;msg&quot;,
+        &quot;type&quot;
+      ],
+      &quot;title&quot;: &quot;ValidationError&quot;
+    }
+  }
+}</pre></div></details><footer>默认地址 http://127.0.0.1:8000 · 单机教学项目</footer></main></html>

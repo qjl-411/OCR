@@ -1,0 +1,35 @@
+{
+  "started_at": "2026-11-21T02:33:24.891844+00:00",
+  "checkpoint_sha256": "f893e2b3f68179a4cce50946b8e554597dc1a1a6a33bb486b41f12adb2ac87d4",
+  "run_name": "camera-adaptation",
+  "training_data_manifest_sha256": "509ac93ff83fd121082d55d572b5aaaac448efa4c5b61b12f8f7e44f535d33c9",
+  "device": "cpu",
+  "torch": "2.8.0+cpu",
+  "threads": 4,
+  "steps": 800,
+  "batch_size": 8,
+  "architecture": "7 Conv + 2 bidirectional LSTM + CTC",
+  "train_samples": 2071,
+  "validation_samples": 475,
+  "cnn_frozen": true,
+  "loss": "torch.nn.CTCLoss",
+  "independent_test_data_used": false,
+  "initial_validation": {
+    "samples": 120,
+    "exact_matches": 94,
+    "cer": 0.04160246533127889,
+    "scope": "DEVELOPMENT crops, not independent whole-invoice accuracy"
+  },
+  "parent_completed_steps": 400,
+  "final_validation": {
+    "samples": 120,
+    "exact_matches": 116,
+    "cer": 0.0061633281972265025,
+    "scope": "DEVELOPMENT crops, not independent whole-invoice accuracy"
+  },
+  "elapsed_seconds": 154.58670537599994,
+  "finished_at": "2026-11-21T02:36:01.926239+00:00",
+  "completed_steps": 800,
+  "cumulative_project_finetuning_steps": 1200,
+  "output_sha256": "df07e732ba04f1690e87fa1312d3cdec7ada9bc10a4384e32d0641d60df5fb5d"
+}

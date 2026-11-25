@@ -1,0 +1,33 @@
+{
+  "source_sha256": "09b3a0cc57eb826dd6b6fa95a03e078ad435b7b5fb0186dad2abdb98a4fdf64a",
+  "output_sha256": "88009f4b8e263ebfa03b7d108da340685836dc20a72b02b67cd434fb7bd1d64f",
+  "architecture": "VGG16 13 Conv + RPN Conv + BiLSTM(128) + FC(512) + 10 anchor heads",
+  "trained": false,
+  "reference": "original frozen graph read and executed by OpenVINO CPU, not a separate TensorFlow runtime",
+  "parity": [
+    {
+      "input": [
+        160,
+        256
+      ],
+      "max_probability_error": 1.1920928955078125e-07,
+      "max_regression_error": 7.152557373046875e-07
+    },
+    {
+      "input": [
+        320,
+        512
+      ],
+      "max_probability_error": 1.1920928955078125e-07,
+      "max_regression_error": 8.344650268554688e-07
+    },
+    {
+      "input": [
+        400,
+        640
+      ],
+      "max_probability_error": 1.1920928955078125e-07,
+      "max_regression_error": 1.0728836059570312e-06
+    }
+  ]
+}

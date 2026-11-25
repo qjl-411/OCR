@@ -1,0 +1,18 @@
+services:
+  piao:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - piao-data:/data
+    environment:
+      INVOICE_DATA_DIR: /data
+      INVOICE_SEED_DEMO: "1"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+volumes:
+  piao-data:

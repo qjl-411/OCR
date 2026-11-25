@@ -1,0 +1,445 @@
+{
+  "scope": "固定附件回归与同源栅格衍生样本，不代表独立测试集准确率",
+  "native": [
+    {
+      "file": "26317000002709510017.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.066,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "26362000001080860461.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.05,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "26362000001406117581_江西方欣信息技术有限公司.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.022,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "26367000000144423290.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.027,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "26442000012564532126_江西方欣信息技术有限公司.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.018,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "DZFP_26367000000002725372.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.019,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": false,
+      "issues": [
+        {
+          "field": "tax_amount",
+          "message": "缺少税额",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "file": "digital_26117000001240669930.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.062,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "dzfp_26132000002535362776_沧州禧妆日用品有限公司_20260805112552.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.023,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "dzfp_26212000001189670446_江西方欣信息技术有限公司_20260810100454.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.023,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "dzfp_26362000000398038186_红谷滩区九峰超市（个体工商户）_20260310133025.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.022,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "dzfp_26954000000068352361_深圳市龙岗区坂田街道谷满香餐饮店（个体工商户）_20260823115821.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.02,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "【优e出租-14.20元-1个行程】高德打车电子发票.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.062,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "【优e出行-7.49元-1个行程】高德打车电子发票.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.047,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "【喜行约车-15.70元-1个行程】高德打车电子发票.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.078,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "【如祺出行-166.59元-4个行程】高德打车电子发票.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.023,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "【携华出行-15.78元-1个行程】高德打车电子发票.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.013,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "【旅程约车-64.73元-2个行程】高德打车电子发票.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.017,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "【曹操出行-11.52元-1个行程】高德打车电子发票.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.018,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "【曹操出行-8.50元-1个行程】高德打车电子发票.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.04,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "发票文件1 (5).pdf",
+      "engine": "pdf_text",
+      "seconds": 0.022,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "发票金额30.40元.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.021,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "广州市德河楼饮食有限公司_发票金额179.00元.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.036,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    },
+    {
+      "file": "机票预订出行订单尾号14093370-电子普通发票.pdf",
+      "engine": "pdf_text",
+      "seconds": 0.016,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "tax_is_explicit": true,
+      "issues": []
+    }
+  ],
+  "ocr": [
+    {
+      "source_file": "26317000002709510017.pdf",
+      "variant": "clean_png",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 7.794,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": false
+      },
+      "observed": {
+        "invoice_number": "26317000002709510017",
+        "invoice_date": "2026-07-29",
+        "total": "33.96"
+      },
+      "text_mean_score": 0.8521,
+      "issues": [
+        {
+          "field": "buyer_name",
+          "message": "缺少购买方名称",
+          "severity": "error"
+        },
+        {
+          "field": "seller_name",
+          "message": "缺少销售方名称",
+          "severity": "error"
+        },
+        {
+          "field": "subtotal",
+          "message": "缺少不含税金额",
+          "severity": "error"
+        },
+        {
+          "field": "tax_amount",
+          "message": "缺少税额",
+          "severity": "error"
+        },
+        {
+          "field": "confidence",
+          "message": "OCR 文本平均分数低于复核阈值，请逐项核对",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "source_file": "26362000001080860461.pdf",
+      "variant": "jpeg_quality_65",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 5.934,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "observed": {
+        "invoice_number": "26362000001080860461",
+        "invoice_date": "2026-06-23",
+        "total": "504.08"
+      },
+      "text_mean_score": 0.8771,
+      "issues": [
+        {
+          "field": "seller_name",
+          "message": "缺少销售方名称",
+          "severity": "error"
+        },
+        {
+          "field": "confidence",
+          "message": "OCR 文本平均分数低于复核阈值，请逐项核对",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "source_file": "26367000000144423290.pdf",
+      "variant": "rotate_2_degrees",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 5.304,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": false,
+        "total": true
+      },
+      "observed": {
+        "invoice_number": "26367000000144423290",
+        "invoice_date": "",
+        "total": "299.73"
+      },
+      "text_mean_score": 0.8295,
+      "issues": [
+        {
+          "field": "invoice_date",
+          "message": "缺少开票日期",
+          "severity": "error"
+        },
+        {
+          "field": "buyer_name",
+          "message": "缺少购买方名称",
+          "severity": "error"
+        },
+        {
+          "field": "seller_name",
+          "message": "缺少销售方名称",
+          "severity": "error"
+        },
+        {
+          "field": "subtotal",
+          "message": "缺少不含税金额",
+          "severity": "error"
+        },
+        {
+          "field": "tax_amount",
+          "message": "缺少税额",
+          "severity": "error"
+        },
+        {
+          "field": "confidence",
+          "message": "OCR 文本平均分数低于复核阈值，请逐项核对",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "source_file": "机票预订出行订单尾号14093370-电子普通发票.pdf",
+      "variant": "grayscale",
+      "engine": "ctpn_crnn_ctc",
+      "seconds": 5.878,
+      "matches": {
+        "invoice_number": true,
+        "invoice_date": true,
+        "total": true
+      },
+      "observed": {
+        "invoice_number": "26317000002243210100",
+        "invoice_date": "2026-06-21",
+        "total": "553.00"
+      },
+      "text_mean_score": 0.862,
+      "issues": [
+        {
+          "field": "buyer_name",
+          "message": "缺少购买方名称",
+          "severity": "error"
+        },
+        {
+          "field": "seller_name",
+          "message": "缺少销售方名称",
+          "severity": "error"
+        },
+        {
+          "field": "confidence",
+          "message": "OCR 文本平均分数低于复核阈值，请逐项核对",
+          "severity": "warning"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "started_at": "2026-11-21T02:29:16.948872+00:00",
+  "checkpoint_sha256": "7836afdb7f56cae4d5ef28532c33c1642f7f9a5e65cef5bd6fa9da00595a8691",
+  "run_name": "required-crnn",
+  "training_data_manifest_sha256": "4e9fc24be2bfc39d0129f151057caac3777b2a5cdad7b208f51438ed64228bf8",
+  "device": "cpu",
+  "torch": "2.8.0+cpu",
+  "threads": 4,
+  "steps": 400,
+  "batch_size": 8,
+  "architecture": "7 Conv + 2 bidirectional LSTM + CTC",
+  "train_samples": 1571,
+  "validation_samples": 350,
+  "cnn_frozen": true,
+  "loss": "torch.nn.CTCLoss",
+  "independent_test_data_used": false,
+  "initial_validation": {
+    "samples": 60,
+    "exact_matches": 36,
+    "cer": 0.07478632478632478,
+    "scope": "DEVELOPMENT crops, not independent whole-invoice accuracy"
+  },
+  "parent_completed_steps": 0,
+  "final_validation": {
+    "samples": 60,
+    "exact_matches": 58,
+    "cer": 0.004273504273504274,
+    "scope": "DEVELOPMENT crops, not independent whole-invoice accuracy"
+  },
+  "elapsed_seconds": 80.15465632799999,
+  "finished_at": "2026-11-21T02:30:38.256396+00:00",
+  "completed_steps": 400,
+  "cumulative_project_finetuning_steps": 400,
+  "output_sha256": "f893e2b3f68179a4cce50946b8e554597dc1a1a6a33bb486b41f12adb2ac87d4"
+}

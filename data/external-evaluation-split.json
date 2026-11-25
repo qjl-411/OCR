@@ -1,0 +1,45 @@
+{
+  "selection_rule": "Both exact VAT invoice example URLs provided by the two primary API documentation pages, chosen before any model inference. No output-based filtering.",
+  "samples": [
+    {
+      "id": "aliyun-ocr-example",
+      "url": "https://img.alicdn.com/tfs/TB1qIIfXAPoK1RjSZKbXXX1IXXa-808-523.jpg",
+      "source_page": "https://help.aliyun.com/zh/ocr/developer-reference/api-ocr-api-2021-07-07-recognizeinvoice",
+      "expected": {
+        "invoice_code": "031001600211",
+        "invoice_number": "67516978",
+        "invoice_date": "2017-02-12",
+        "subtotal": "75.21",
+        "tax_amount": "12.79",
+        "total": "88.00"
+      },
+      "image_sha256": "cb297eb62346b2af74fd9085524fd0fb6325d7429aeb4baef56d54d060f40f65",
+      "ground_truth_method": "Manual visual transcription of the six visible printed fields before first inference; cloud API outputs not used."
+    },
+    {
+      "id": "aliyun-viapi-example",
+      "url": "https://viapi-test.oss-cn-shanghai.aliyuncs.com/viapi-3.0domepic/ocr/RecognizeVATInvoice/RecognizeVATInvoice3.jpg",
+      "source_page": "https://help.aliyun.com/en/viapi/developer-reference/api-k4uq3o",
+      "expected": {
+        "invoice_code": "033002000411",
+        "invoice_number": "03753869",
+        "invoice_date": "2020-12-15",
+        "subtotal": "82.08",
+        "tax_amount": "4.92",
+        "total": "87.00"
+      },
+      "image_sha256": "918aea5d42435c2c762e56fcdb6ea1bc8287d4c1be00a05f3efe33ea1f3841d7",
+      "ground_truth_method": "Manual visual transcription of the six visible printed fields before first inference; cloud API outputs not used."
+    }
+  ],
+  "fixed_before_inference_at": "2026-11-21T03:15:39.264490+00:00",
+  "physical_invoice_groups": 2,
+  "project_training_or_tuning_use": false,
+  "cloud_ocr_called": false,
+  "pdf_text_used": false,
+  "limitations": [
+    "Two public documentation examples, a convenience sample, not representative production accuracy.",
+    "No inference that the two companies completed the depicted transactions.",
+    "Unknown original pretraining corpus; upstream overlap cannot be ruled out."
+  ]
+}
