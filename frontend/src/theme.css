@@ -293,8 +293,14 @@ input[type=date]::-webkit-calendar-picker-indicator:hover{opacity:1}
   .dropzone{min-height:230px}
 }
 
-/* ---- 窄屏：费用构成图例必须单列自适应，否则撑破视口 ---- */
-@media(max-width:760px){
+/* ---- 表格横向滚动：窄屏下宁可滚动也不裁切内容 ---- */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.table-scroll::-webkit-scrollbar{height:6px}
+.table-scroll::-webkit-scrollbar-thumb{background:#d5dde3;border-radius:3px}
+.table-scroll::-webkit-scrollbar-track{background:transparent}
+.table-scroll .simple-table{min-width:max-content;width:100%}
+
+/* ---- 窄屏：费用构成图例必须单列自适应，否则撑破视口 ---- */@media(max-width:760px){
   .category-chart{flex-direction:column;align-items:center}
   .category-legend{display:flex;flex-direction:column;gap:10px;width:100%;max-width:100%;padding:0 18px;box-sizing:border-box}
   .category-legend>div{width:100%;min-width:0;margin:0;justify-content:space-between}
